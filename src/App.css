@@ -2,6 +2,11 @@
   text-align: center;
 }
 
+.name-form {
+  text-align: center;
+  margin-top: 20%
+}
+
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 40vmin;
