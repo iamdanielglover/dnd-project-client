@@ -3,12 +3,13 @@ import GetName from '../Components/GetName.js'
 import GetRace from '../Components/GetRace.js'
 import GetAlignment from '../Components/GetAlignment.js'
 import GetStats from '../Components/GetStats.js'
+import ChooseProficiency from '../Components/ChooseProficiencies.js'
 
 class CreateCharacter extends React.Component {
   state = {
     character: {
         name: "",
-        klass_id: null,
+        klass_id: 1,
         race_id: null,
         alignment: null,
         level: 1,
@@ -36,6 +37,8 @@ class CreateCharacter extends React.Component {
         return <GetAlignment />
       case "stats":
         return <GetStats />
+      case "proficiencies":
+        return <ChooseProficiency klassID={this.state.character.klass_id} />
 
         default:
           return null
