@@ -9,7 +9,7 @@ class CreateCharacter extends React.Component {
   state = {
     character: {
         name: "",
-        klass_id: 1,
+        klass_id: 5,
         race_id: null,
         alignment: null,
         level: 1,
@@ -21,7 +21,7 @@ class CreateCharacter extends React.Component {
         wisdom: null,
         charisma: null
     },
-    page: "stats"
+    page: "proficiencies"
   }
 
   renderPage() {
