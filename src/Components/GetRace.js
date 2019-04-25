@@ -23,7 +23,6 @@ class GetRace extends React.Component {
   }
 
   render() {
-    console.log(this.state.races)
     return (
       <div>
           {this.grabRaceNamesForRender()}

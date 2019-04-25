@@ -2,6 +2,7 @@ import React from 'react'
 import GetName from '../Components/GetName.js'
 import GetRace from '../Components/GetRace.js'
 import GetAlignment from '../Components/GetAlignment.js'
+import GetStats from '../Components/GetStats.js'
 
 class CreateCharacter extends React.Component {
   state = {
@@ -19,7 +20,7 @@ class CreateCharacter extends React.Component {
         wisdom: null,
         charisma: null
     },
-    page: "alignment"
+    page: "stats"
   }
 
   renderPage() {
@@ -34,8 +35,7 @@ class CreateCharacter extends React.Component {
       case "alignment":
         return <GetAlignment />
       case "stats":
-        console.log("stats")
-        break;
+        return <GetStats />
 
         default:
           return null
