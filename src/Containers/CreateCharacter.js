@@ -1,19 +1,22 @@
 import React from 'react'
 import GetName from '../Components/GetName.js'
 import GetRace from '../Components/GetRace.js'
-import GetAlignment from '../Components/GetAlignment.js'
+import GetClass from '../Components/GetClass.js'
 import GetStats from '../Components/GetStats.js'
+import GetAlignment from '../Components/GetAlignment.js'
 import ChooseProficiency from '../Components/ChooseProficiencies.js'
+
 
 class CreateCharacter extends React.Component {
   state = {
     character: {
+        user_id: 1,
         name: "",
         klass_id: 5,
         race_id: null,
         alignment: null,
         level: 1,
-        experience: null,
+        experience: 0,
         strength: null,
         dexterity: null,
         constitution: null,
@@ -31,12 +34,11 @@ class CreateCharacter extends React.Component {
       case "race":
         return <GetRace applyingRace={this.applyingRace} />
       case "class":
-        console.log("class")
-        break;
-      case "alignment":
-        return <GetAlignment />
+        return <GetClass applyingKlass={this.applyingKlass} />
       case "stats":
-        return <GetStats />
+        return <GetStats applyingStats={this.applyingStats} />
+      case "alignment":
+        return <GetAlignment applyingAlignment={this.applyingAlignment} />
       case "proficiencies":
         return <ChooseProficiency klassID={this.state.character.klass_id} />
 
@@ -57,6 +59,34 @@ class CreateCharacter extends React.Component {
       character: {...this.state.character, race_id: id },
       page: "class"
     })
+  }
+
+  applyingKlass = (id) => {
+    this.setState({
+      character: {...this.state.character, klass_id: id },
+      page: "stats"
+    })
+  }
+
+  applyingStats = (stats) => {
+    this.setState({
+      character: {...this.state.character,
+        strength: stats.strength,
+        dexterity: stats.dexterity,
+        constitution: stats.constitution,
+        intelligence: stats.intelligence,
+        wisdom: stats.wisdom,
+        charisma: stats.charisma
+      },
+      page: "alignment"
+    })
+  }
+
+  applyingAlignment = (string) => {
+    this.setState({
+      character: {...this.state.character, alignment: string },
+      page: "proficiencies"
+    }, this.props.sendCharacterToApi(this.state.character))
   }
 
   render() {
