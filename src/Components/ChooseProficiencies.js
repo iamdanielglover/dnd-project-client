@@ -9,7 +9,7 @@ class ChooseProficiency extends React.Component {
 
 
   componentDidMount() {
-    fetch('http://www.dnd5eapi.co/api/classes/' + this.props.klassID)
+    fetch('http://www.dnd5eapi.co/api/classes/' + this.props.user.characters[this.props.user.characters.length -1].klass_id)
       .then(resp => resp.json())
       .then(data => this.setState({
         // klassList: data.proficiency_choices[0].from.map(prof => prof.name.slice(7)),

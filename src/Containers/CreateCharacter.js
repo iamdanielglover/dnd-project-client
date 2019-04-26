@@ -4,7 +4,6 @@ import GetRace from '../Components/GetRace.js'
 import GetClass from '../Components/GetClass.js'
 import GetStats from '../Components/GetStats.js'
 import GetAlignment from '../Components/GetAlignment.js'
-import ChooseProficiency from '../Components/ChooseProficiencies.js'
 
 
 class CreateCharacter extends React.Component {
@@ -39,8 +38,6 @@ class CreateCharacter extends React.Component {
         return <GetStats applyingStats={this.applyingStats} />
       case "alignment":
         return <GetAlignment applyingAlignment={this.applyingAlignment} />
-      case "proficiencies":
-        return <ChooseProficiency klassID={this.state.character.klass_id} />
 
         default:
           return null
@@ -84,8 +81,7 @@ class CreateCharacter extends React.Component {
 
   applyingAlignment = (string) => {
     this.setState({
-      character: {...this.state.character, alignment: string },
-      page: "proficiencies"
+      character: {...this.state.character, alignment: string }
     }, this.props.sendCharacterToApi(this.state.character))
   }
 
