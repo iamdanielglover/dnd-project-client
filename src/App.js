@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import CreateCharacter from './Containers/CreateCharacter.js'
+import Navbar from './Containers/Navbar.js'
 
 class App extends React.Component {
   state = {
@@ -18,8 +18,8 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <h1>Howdy</h1>
-        <CreateCharacter user={this.state.user}/>
+        <Navbar />
+
       </div>
     )
   }

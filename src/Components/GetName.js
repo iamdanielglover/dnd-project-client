@@ -1,15 +1,33 @@
 import React from 'react'
 import '../App.css'
 
-const GetName = (props) => {
-  return (
-    <div className="name-form">
-      <form>
-        <input type="text" placeholder="Enter Name"/>
-        <button type="submit">Submit</button>
-      </form>
-    </div>
-  )
+class GetName extends React.Component {
+  state = {
+    input: ""
+  }
+
+  handleChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault()
+    this.props.applyingName(this.state.input)
+  }
+
+  render() {
+    console.log(this.state)
+    return (
+      <div className="name-form">
+        <form onSubmit={this.handleSubmit}>
+          <input type="text" placeholder="Enter Name" name="input" value={this.state.input} onChange={this.handleChange} />
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    )
+  }
 }
 
 export default GetName

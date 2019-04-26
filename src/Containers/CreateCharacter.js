@@ -21,15 +21,15 @@ class CreateCharacter extends React.Component {
         wisdom: null,
         charisma: null
     },
-    page: "proficiencies"
+    page: "name"
   }
 
   renderPage() {
     switch (this.state.page) {
       case "name":
-        return <GetName />
+        return <GetName applyingName={this.applyingName} />
       case "race":
-        return <GetRace />
+        return <GetRace applyingRace={this.applyingRace} />
       case "class":
         console.log("class")
         break;
@@ -45,7 +45,22 @@ class CreateCharacter extends React.Component {
     }
   }
 
+  applyingName = (name) => {
+    this.setState({
+      character: {...this.state.character, name: name },
+      page: "race"
+    })
+  }
+
+  applyingRace = (id) => {
+    this.setState({
+      character: {...this.state.character, race_id: id },
+      page: "class"
+    })
+  }
+
   render() {
+    console.log(this.state.character)
     return (
       <div>
         {this.renderPage()}
@@ -53,5 +68,7 @@ class CreateCharacter extends React.Component {
     );
   }
 }
+
+
 
 export default CreateCharacter
