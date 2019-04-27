@@ -1,6 +1,4 @@
-import React from 'react'
-import CreateCharacter from './CreateCharacter.js'
-import ViewChars from './ViewChars'
+import React from 'react' 
 
 class Navbar extends React.Component {
 

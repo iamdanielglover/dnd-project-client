@@ -34,7 +34,6 @@ class GetClass extends React.Component {
   renderKlasses = () => this.state.klasses.map((klass, index) => <option key={index} value={klass.name}>{klass.name}</option>)
 
   render() {
-    console.log(this.state)
     return (
       <form onSubmit={this.handleSubmit}>
         <select value={this.state.chosen_klass} onChange={this.handleChange}>

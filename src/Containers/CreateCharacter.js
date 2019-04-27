@@ -9,7 +9,7 @@ import GetAlignment from '../Components/GetAlignment.js'
 class CreateCharacter extends React.Component {
   state = {
     character: {
-        user_id: 1,
+        user_id: this.props.userID,
         name: "",
         klass_id: 5,
         race_id: null,
@@ -86,7 +86,6 @@ class CreateCharacter extends React.Component {
   }
 
   render() {
-    console.log(this.state.character)
     return (
       <div>
         {this.renderPage()}
