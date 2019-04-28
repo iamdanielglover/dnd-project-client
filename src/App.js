@@ -4,21 +4,25 @@ import Navbar from './Containers/Navbar.js'
 import { Switch, Route, withRouter } from "react-router-dom"
 import CreateCharacter from './Containers/CreateCharacter.js'
 import ViewChars from './Containers/ViewChars.js'
+import ViewCharacter from './Containers/ViewCharacter.js'
 import Landing from './Containers/Landing.js'
 import ChooseProficiency from './Components/ChooseProficiencies.js'
 
 class App extends React.Component {
   state = {
       user_id: 1,
+      character_id: 1,
   }
 
   sendCharacterToApi = (character) => {
+    console.log("character " + character.alignment)
     fetch('http://localhost:3000/api/v1/characters', {
       method: 'POST',
       headers: { "Content-Type" : "application/json" },
       body: JSON.stringify(character)
       }).then((response) => response.json())
         .then((responseJson) => {
+          this.setCurrentCharacter(character)
           this.moveToProficiencyChoices();
       })
   }
@@ -34,7 +38,7 @@ class App extends React.Component {
           .then(resp => resp.json())
           .then(data => {
             prof_ids = [...prof_ids, data.find(skill => skill.name.toLowerCase().includes(prof.toLowerCase())).id]
-            prof_ids.slice(1, (prof_ids.length)).forEach(id =>
+            prof_ids.forEach(id =>
               fetch('http://localhost:3000/api/v1/character_proficiencies', {
                 method: 'POST',
                 headers: { "Content-Type" : "application/json" },
@@ -51,9 +55,14 @@ class App extends React.Component {
     this.props.history.push("/")
   }
 
-
+  setCurrentCharacter(char) {
+    this.setState({
+      character: char.id
+    })
+  }
 
   render() {
+    console.log(this.state.character_id)
     return (
       <div>
         <Navbar />
@@ -69,6 +78,10 @@ class App extends React.Component {
               <Route
                 path="/view-characters"
                 render={(routerProps) => <ViewChars {...routerProps} user={this.state.user_id} /> }
+              />
+              <Route
+                path="/view-charactersheet"
+                render={(routerProps) => <ViewCharacter {...routerProps} character={this.state.character_id} /> }
               />
               <Route
                 path="/choose-proficiencies"

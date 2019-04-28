@@ -6,6 +6,8 @@ class ChooseProficiency extends React.Component {
     currentCharKlass: {},
     klassInfo: {},
     chosen_profs: [],
+    choose: null,
+    from: null,
     loading: true,
   }
 
@@ -13,12 +15,26 @@ class ChooseProficiency extends React.Component {
     fetch(`http://www.dnd5eapi.co/api/classes/${this.state.currentCharKlass}`)
       .then(resp => resp.json())
       .then(data => this.setState({
-        klassInfo: data,
-        loading: false
-      })
+        klassInfo: data
+      }, () => this.setupFromAndChoose())
     )
   }
 
+  setupFromAndChoose() {
+    if (this.state.klassInfo.name === "Monk") {
+      this.setState({
+        choose: this.state.klassInfo.proficiency_choices[this.state.klassInfo.proficiency_choices.length - 1].choose,
+        from: this.state.klassInfo.proficiency_choices[this.state.klassInfo.proficiency_choices.length - 1].from,
+        loading: false
+      })
+    } else {
+      this.setState({
+        choose: this.state.klassInfo.proficiency_choices[0].choose,
+        from: this.state.klassInfo.proficiency_choices[0].from,
+        loading: false
+      })
+    }
+  }
 
   componentWillMount() {
     fetch('http://localhost:3000/api/v1/users/' + this.props.user)
@@ -48,13 +64,10 @@ class ChooseProficiency extends React.Component {
   addProficiency = (event, prof) => {
     const name = prof.name.slice(7)
     this.addOrRemove(event, name)
-      if (this.state.chosen_profs.length < this.state.klassInfo.proficiency_choices[0].choose) {
-        console.log("whoop")
-      }
   }
 
   renderFormAfterLoad() {
-      return this.state.klassInfo.proficiency_choices[0].from.map((prof, index) => {
+      return this.state.from.map((prof, index) => {
         return (
           <div key={index}>
             <label>
@@ -70,7 +83,7 @@ class ChooseProficiency extends React.Component {
       if (!this.state.loading)
       return (
         <React.Fragment>
-          <h3>Choose {this.state.klassInfo.proficiency_choices[0].choose} Skill proficiencies</h3>
+          <h3>Choose {this.state.choose} Skill proficiencies</h3>
           <form onSubmit={this.handleSubmit}>
             {this.renderFormAfterLoad()}
             <button>Submit</button>
@@ -81,17 +94,16 @@ class ChooseProficiency extends React.Component {
 
     handleSubmit = (event) => {
       event.preventDefault()
-      if (this.state.chosen_profs.length > 2) {
+      if (this.state.chosen_profs.length > this.state.choose) {
         alert("selected too many")
       }
-      if (this.state.chosen_profs.length  < 3) {
+      if (this.state.chosen_profs.length  <= this.state.choose) {
         this.props.setProfIds(this.state.chosen_profs, [...this.state.user.characters].reverse()[0].id)
       }
     }
 
 
   render() {
-    console.log(this.state.chosen_profs)
     return  (
       <div>
           {

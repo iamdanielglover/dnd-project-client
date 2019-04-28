@@ -34,7 +34,6 @@ class GetRace extends React.Component {
   renderRaces = () => this.state.races.map((race, index) => <option key={index} value={race.name}>{race.name}</option>)
 
   render() {
-    console.log(this.state)
     return (
       <form onSubmit={this.handleSubmit}>
         <select value={this.state.chosen_race} onChange={this.handleChange}>

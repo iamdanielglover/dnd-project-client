@@ -9,6 +9,7 @@ const alignments = [
     "Chaotic Neutral",
     "Lawful Evil",
     "Neutral Evil",
+    "Chaotic Evil",
 ]
 
 class GetAlignment extends React.Component {

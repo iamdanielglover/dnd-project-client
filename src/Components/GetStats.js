@@ -77,31 +77,3 @@ class GetStats extends React.Component {
 }
 
 export default GetStats
-
-// settingOptions = () => [...Array(19).keys()].map((num, index) => <option key={index} value={num}>{num}</option>)
-//
-// renderForms() = () => Object.keys(this.state).map((stat, index) => <select key={index} value={stat} onChange={this.handleChange} >{this.settingOptions()}</select>)
-//
-// <select value={stat} onChange={this.handleChange}>
-//   {this.settingOptions()}
-// </select>
-//
-// <form onSubmit={this.handleSubmit}>
-//
-//   <select value={this.state.chosen_klass} onChange={this.handleChange}>
-//     {this.settingOptions()}
-//   </select>
-//
-// <input type="submit" value="Submit" />
-// </form>
-//
-//
-// <form>
-//   <input placeholder="Strength" type="number" name="strength" onInput={this.handleChange} value={this.state.strength} /><br/>
-//   <input placeholder="Dexterity" type="number" name="dexterity" onInput={this.handleChange} value={this.state.dexterity} /><br/>
-//   <input placeholder="Constitution" type="number" name="constitution" onInput={this.handleChange} value={this.state.constitution} /><br/>
-//   <input placeholder="Intelligence" type="number" name="intelligence" onInput={this.handleChange} value={this.state.intelligence} /><br/>
-//   <input placeholder="Wisdom" type="number" name="wisdom" onInput={this.handleChange} value={this.state.wisdom} /><br/>
-//   <input placeholder="Charisma" type="number" name="charisma" onInput={this.handleChange} value={this.state.charisma} /><br/>
-//   <button>Submit</button>
-// </form><br/>

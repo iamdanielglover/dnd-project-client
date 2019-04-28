@@ -13,7 +13,7 @@ class CreateCharacter extends React.Component {
         name: "",
         klass_id: 5,
         race_id: null,
-        alignment: null,
+        alignment: "",
         level: 1,
         experience: 0,
         strength: null,
@@ -81,8 +81,10 @@ class CreateCharacter extends React.Component {
 
   applyingAlignment = (string) => {
     this.setState({
-      character: {...this.state.character, alignment: string }
-    }, this.props.sendCharacterToApi(this.state.character))
+      character: {...this.state.character,
+        alignment: string
+      }
+    }, () => this.props.sendCharacterToApi(this.state.character))
   }
 
   render() {
