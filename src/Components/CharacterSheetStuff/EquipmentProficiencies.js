@@ -5,23 +5,32 @@ class EquipmentProficiencies extends React.Component {
     proficiencies: null,
     languages: null,
     loading: true,
+    klass_id: null,
+    race_id: null,
   }
 
   componentDidMount() {
-    fetch('http://www.dnd5eapi.co/api/classes/1')
-	   .then(resp => resp.json())
-	   .then(data => this.setState({
-       proficiencies: data.proficiencies.map(prof => prof.name)
-     }, () => {
-       fetch('http://www.dnd5eapi.co/api/races/1')
-        .then(resp => resp.json())
-        .then(data => this.setState({
-          languages: data.languages.map(lang => lang.name),
-          loading: false
-        }))
-     })
-    )
-   }
+    fetch('http://localhost:3000/api/v1/characters/' + this.props.char)
+      .then(resp => resp.json())
+      .then(data => this.setState({
+        klass_id: data.klass_id,
+        race_id: data.race_id,
+      }, () => {
+        fetch('http://www.dnd5eapi.co/api/classes/' + this.state.klass_id)
+    	   .then(resp => resp.json())
+         .then(data => this.setState({
+           proficiencies: data.proficiencies.map(prof => prof.name)
+         }, () => {
+           fetch('http://www.dnd5eapi.co/api/races/' + this.state.race_id)
+            .then(resp => resp.json())
+            .then(data => this.setState({
+              languages: data.languages.map(lang => lang.name),
+              loading: false
+            }))
+         }))
+      }))
+  }
+
 
    renderStuff() {
      if (!this.state.loading) {

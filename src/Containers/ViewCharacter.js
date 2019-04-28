@@ -3,6 +3,7 @@ import AttributeList from '../Components/CharacterSheetStuff/AttributeList.js'
 import CharacterInfo from '../Components/CharacterSheetStuff/CharacterInfo.js'
 import SkillList from '../Components/CharacterSheetStuff/SkillList.js'
 import EquipmentProficiencies from '../Components/CharacterSheetStuff/EquipmentProficiencies.js'
+import SavingThrows from '../Components/CharacterSheetStuff/SavingThrows.js'
 
 const ViewCharacter = (props) => {
     return (
@@ -13,7 +14,9 @@ const ViewCharacter = (props) => {
         <br/>
         <SkillList char={props.character}/>
         <br/>
-        <EquipmentProficiencies />
+        <EquipmentProficiencies char={props.character}/>
+        <br/>
+        <SavingThrows char={props.character}/>
       </div>
     )
 }

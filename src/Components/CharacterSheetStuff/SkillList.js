@@ -78,17 +78,6 @@ class SkillList extends React.Component {
     return unique
   }
 
-  renderSkillList = () => {
-    this.state.skills.map((skill, index) => {
-      return (
-        <tr>
-          <td>{skill.name}</td>
-          <td>{this.assignAbilityScore(this.state.character.strength)}</td>
-        </tr>
-      )
-    })
-  }
-
   findStatByMod = (a) => {
     const keys = Object.keys(this.state.character)
     const values = Object.values(this.state.character)
