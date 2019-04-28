@@ -11,7 +11,7 @@ import ChooseProficiency from './Components/ChooseProficiencies.js'
 class App extends React.Component {
   state = {
       user_id: 1,
-      character_id: 1,
+      character_id: 3,
   }
 
   sendCharacterToApi = (character) => {
@@ -62,7 +62,6 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state.character_id)
     return (
       <div>
         <Navbar />
@@ -81,7 +80,7 @@ class App extends React.Component {
               />
               <Route
                 path="/view-charactersheet"
-                render={(routerProps) => <ViewCharacter {...routerProps} character={this.state.character_id} /> }
+                render={(routerProps) => <ViewCharacter {...routerProps} user={this.state.user_id} character={this.state.character_id} /> }
               />
               <Route
                 path="/choose-proficiencies"

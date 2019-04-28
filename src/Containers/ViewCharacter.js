@@ -1,27 +1,18 @@
 import React from 'react'
 import AttributeList from '../Components/CharacterSheetStuff/AttributeList.js'
+import CharacterInfo from '../Components/CharacterSheetStuff/CharacterInfo.js'
+import SkillList from '../Components/CharacterSheetStuff/SkillList.js'
 
-class ViewCharacter extends React.Component {
-  state = {
-    character: null
-  }
-
-  componentDidMount() {
-    fetch('http://localhost:3000/api/v1/characters/' + this.props.character)
-      .then(resp => resp.json())
-      .then(data => this.setState({
-        character: data
-      }))
-  }
-
-  render() {
-    console.log(this.state.character)
+const ViewCharacter = (props) => {
     return (
       <div>
-        <AttributeList character={this.state.character}/>
+        <CharacterInfo char={props.character}/>
+        <br/>
+        <AttributeList char={props.character} user={props.user}/>
+        <br/>
+        <SkillList char={props.character}/>
       </div>
     )
-  }
 }
 
 export default ViewCharacter
