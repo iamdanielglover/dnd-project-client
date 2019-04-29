@@ -6,6 +6,7 @@ import CreateCharacter from './Containers/CreateCharacter.js'
 import ViewChars from './Containers/ViewChars.js'
 import ViewCharacter from './Containers/ViewCharacter.js'
 import Landing from './Containers/Landing.js'
+import UpgradeChar from './Containers/UpgradeChar.js'
 import ChooseProficiency from './Components/ChooseProficiencies.js'
 import { Container } from 'semantic-ui-react'
 
@@ -60,6 +61,10 @@ class App extends React.Component {
     this.props.history.push("/view-characters")
   }
 
+  sendUpgrade = (id) => {
+    this.props.history.push("/upgrade-character/" + id)
+  }
+
   setCurrentCharacter = (char, callback = () => this.props.history.push("/view-charactersheet")) => {
     this.setState({
       character_id: char.id
@@ -86,11 +91,15 @@ class App extends React.Component {
               />
               <Route
                 path="/view-charactersheet"
-                render={(routerProps) => <ViewCharacter {...routerProps} user={this.state.user_id} character={this.state.character_id} /> }
+                render={(routerProps) => <ViewCharacter {...routerProps} user={this.state.user_id} character={this.state.character_id} sendUpgrade={this.sendUpgrade} /> }
               />
               <Route
                 path="/choose-proficiencies"
                 render={(routerProps) => <ChooseProficiency {...routerProps} user={this.state.user_id} setProfIds={this.setProfIds} /> }
+              />
+              <Route
+                path="/upgrade-character/:character_id"
+                render={(routerProps) => <UpgradeChar {...routerProps} char={this.state.character_id} setProfIds={this.setProfIds} /> }
               />
             </Switch>
           </Container>

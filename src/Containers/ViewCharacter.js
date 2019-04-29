@@ -15,7 +15,7 @@ class ViewCharacter extends React.Component {
       return <Grid>
         <Grid.Row>
           <Grid.Column>
-            <CharacterInfo char={this.props.character}/>
+            <CharacterInfo char={this.props.character} sendUpgrade={this.props.sendUpgrade}/>
           </Grid.Column>
           </Grid.Row>
         <Grid.Row columns={2}>
