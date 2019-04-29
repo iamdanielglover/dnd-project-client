@@ -41,7 +41,7 @@ class ChooseProficiency extends React.Component {
       .then(resp => resp.json())
       .then(data => this.setState({
         user: data,
-        currentCharKlass: [...data.characters].reverse()[0].klass_id
+        currentCharKlass: data.characters.reverse()[0].klass_id
       }, () => this.setClassInfo())
     )
   }

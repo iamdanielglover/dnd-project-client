@@ -1,4 +1,5 @@
 import React from 'react'
+import { Table, Grid } from 'semantic-ui-react'
 
 class CharacterInfo extends React.Component {
   state = {
@@ -46,70 +47,115 @@ class CharacterInfo extends React.Component {
   render() {
     return (
       <div>
-        <table>
-          <tbody>
-            <tr>
-              <th>
-                Name
-              </th>
-              <td>
-                {this.state.name}
-              </td>
-              <th>
-                Class
-              </th>
-              <td>
-                {this.state.klass}
-              </td>
-              <th>
-                Max Hitpoints
-              </th>
-              <td>
-                {this.state.max_hp}
-              </td>
-            </tr>
-            <tr>
-              <th>
-                Alignment
-              </th>
-              <td>
-                {this.state.alignment}
-              </td>
-              <th>
-                Race
-              </th>
-              <td>
-                {this.state.race}
-              </td>
-              <th>
-                Current Hitpoints
-              </th>
-              <td>
-                {this.state.current_hp}
-              </td>
-            </tr>
-            <tr>
-              <th>
-                Speed
-              </th>
-              <td>
-                {this.state.speed}
-              </td>
-              <th>
-                Experience
-              </th>
-              <td>
-                {this.state.experience}
-              </td>
-              <th>
-                Level
-              </th>
-              <td>
-                {this.state.level}
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <Grid columns={3}>
+          <Grid.Column>
+            <Table definition compact>
+              <Table.Body>
+
+                <Table.Row>
+                  <Table.Cell>
+                    Name
+                  </Table.Cell>
+                  <Table.Cell>
+                    {this.state.name}
+                  </Table.Cell>
+                </Table.Row>
+
+                <Table.Row>
+                  <Table.Cell>
+                    Alignment
+                  </Table.Cell>
+                  <Table.Cell>
+                    {this.state.alignment}
+                  </Table.Cell>
+                </Table.Row>
+
+                <Table.Row>
+                  <Table.Cell>
+                    Speed
+                  </Table.Cell>
+                  <Table.Cell>
+                    {this.state.speed}
+                  </Table.Cell>
+                </Table.Row>
+
+
+              </Table.Body>
+            </Table>
+          </Grid.Column>
+          <Grid.Column>
+            <Table definition compact>
+              <Table.Body>
+
+                <Table.Row>
+                  <Table.Cell>
+                    Race
+                  </Table.Cell>
+                  <Table.Cell>
+                    {this.state.race}
+                  </Table.Cell>
+                </Table.Row>
+
+                <Table.Row>
+                  <Table.Cell>
+                    Class
+                  </Table.Cell>
+                  <Table.Cell>
+                    {this.state.klass}
+                  </Table.Cell>
+                </Table.Row>
+
+                <Table.Row>
+                  <Table.Cell>
+                    Experience
+                  </Table.Cell>
+                  <Table.Cell>
+                    <button>{this.state.experience}</button>
+                  </Table.Cell>
+                </Table.Row>
+
+
+              </Table.Body>
+
+            </Table>
+          </Grid.Column>
+          <Grid.Column>
+            <Table definition compact>
+              <Table.Body>
+
+                <Table.Row>
+                  <Table.Cell>
+                    Max HP
+                  </Table.Cell>
+                  <Table.Cell>
+                    {this.state.max_hp}
+                  </Table.Cell>
+                </Table.Row>
+
+                <Table.Row>
+                  <Table.Cell>
+                    Current HP
+                  </Table.Cell>
+                  <Table.Cell>
+                    {this.state.current_hp}
+                  </Table.Cell>
+                </Table.Row>
+
+                <Table.Row>
+                  <Table.Cell>
+                    Level
+                  </Table.Cell>
+                  <Table.Cell>
+                    {this.state.level}
+                  </Table.Cell>
+                </Table.Row>
+
+
+              </Table.Body>
+
+            </Table>
+          </Grid.Column>
+        </Grid>
       </div>
     )
   }

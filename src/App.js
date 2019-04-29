@@ -7,11 +7,12 @@ import ViewChars from './Containers/ViewChars.js'
 import ViewCharacter from './Containers/ViewCharacter.js'
 import Landing from './Containers/Landing.js'
 import ChooseProficiency from './Components/ChooseProficiencies.js'
+import { Container } from 'semantic-ui-react'
 
 class App extends React.Component {
   state = {
       user_id: 1,
-      character_id: 3,
+      character_id: 1,
   }
 
   sendCharacterToApi = (character) => {
@@ -22,8 +23,8 @@ class App extends React.Component {
       body: JSON.stringify(character)
       }).then((response) => response.json())
         .then((responseJson) => {
-          this.setCurrentCharacter(character)
-          this.moveToProficiencyChoices();
+          this.setCurrentCharacter(character, () => this.moveToProficiencyChoices())
+
       })
   }
 
@@ -48,23 +49,28 @@ class App extends React.Component {
           })
         }
       )
-      this.somethingelse()
+      this.sendHome()
   }
 
-  somethingelse = () => {
+  sendHome = () => {
     this.props.history.push("/")
   }
 
-  setCurrentCharacter(char) {
+  sendList = () => {
+    this.props.history.push("/view-characters")
+  }
+
+  setCurrentCharacter = (char, callback = () => this.props.history.push("/view-charactersheet")) => {
     this.setState({
-      character: char.id
-    })
+      character_id: char.id
+    }, callback)
   }
 
   render() {
     return (
-      <div>
-        <Navbar />
+      <React.Fragment>
+        <Navbar sendHome={this.sendHome} sendList={this.sendList}/>
+          <Container>
             <Switch>
               <Route
                 exact path="/"
@@ -76,7 +82,7 @@ class App extends React.Component {
               />
               <Route
                 path="/view-characters"
-                render={(routerProps) => <ViewChars {...routerProps} user={this.state.user_id} /> }
+                render={(routerProps) => <ViewChars {...routerProps} user={this.state.user_id} setCurrentCharacter={this.setCurrentCharacter} /> }
               />
               <Route
                 path="/view-charactersheet"
@@ -87,7 +93,8 @@ class App extends React.Component {
                 render={(routerProps) => <ChooseProficiency {...routerProps} user={this.state.user_id} setProfIds={this.setProfIds} /> }
               />
             </Switch>
-      </div>
+          </Container>
+      </React.Fragment>
     )
   }
 }

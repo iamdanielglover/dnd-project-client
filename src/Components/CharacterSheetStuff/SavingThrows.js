@@ -1,4 +1,5 @@
 import React from 'react'
+import { Table } from 'semantic-ui-react'
 
 class SavingThrows extends React.Component {
   state = {
@@ -75,77 +76,80 @@ class SavingThrows extends React.Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <div>
-      <table>
-        <tbody>
+      <Table compact>
+        <Table.Header>
 
-          <tr>
-            <th>
-            Saving Throw
-            </th>
-            <th>
-            Score
-            </th>
-          </tr>
+            <Table.Row>
+              <Table.HeaderCell>
+              Saving Throw
+            </Table.HeaderCell>
+              <Table.HeaderCell>
+              Score
+            </Table.HeaderCell>
+            </Table.Row>
 
-          <tr>
-            <td>
-            Strength
-            </td>
-            <td>
-            {this.setScore(this.state.character.strength, "STR")}
-            </td>
-          </tr>
+          </Table.Header>
 
-          <tr>
-            <td>
-            Dexterity
-            </td>
-            <td>
-            {this.setScore(this.state.character.dexterity, "DEX")}
-            </td>
-          </tr>
+          <Table.Body>
 
-          <tr>
-            <td>
-            Constitution
-            </td>
-            <td>
-            {this.setScore(this.state.character.constitution, "CON")}
-            </td>
-          </tr>
+            <Table.Row>
+              <Table.Cell>
+              Strength
+            </Table.Cell>
+              <Table.Cell>
+              {this.setScore(this.state.character.strength, "STR")}
+            </Table.Cell>
+            </Table.Row>
 
-          <tr>
-            <td>
-            Intelligence
-            </td>
-            <td>
-            {this.setScore(this.state.character.intelligence, "INT")}
-            </td>
-          </tr>
+            <Table.Row>
+              <Table.Cell>
+              Dexterity
+            </Table.Cell>
+              <Table.Cell>
+              {this.setScore(this.state.character.dexterity, "DEX")}
+            </Table.Cell>
+            </Table.Row>
 
-          <tr>
-            <td>
-            Wisdom
-            </td>
-            <td>
-            {this.setScore(this.state.character.wisdom, "WIS")}
-            </td>
-          </tr>
+            <Table.Row>
+              <Table.Cell>
+              Constitution
+            </Table.Cell>
+              <Table.Cell>
+              {this.setScore(this.state.character.constitution, "CON")}
+            </Table.Cell>
+            </Table.Row>
 
-          <tr>
-            <td>
-            Charisma
-            </td>
-            <td>
-            {this.setScore(this.state.character.charisma, "CHA")}
-            </td>
-          </tr>
+            <Table.Row>
+              <Table.Cell>
+              Intelligence
+            </Table.Cell>
+              <Table.Cell>
+              {this.setScore(this.state.character.intelligence, "INT")}
+            </Table.Cell>
+            </Table.Row>
 
-        </tbody>
-      </table>
+            <Table.Row>
+              <Table.Cell>
+              Wisdom
+            </Table.Cell>
+              <Table.Cell>
+              {this.setScore(this.state.character.wisdom, "WIS")}
+            </Table.Cell>
+            </Table.Row>
+
+            <Table.Row>
+              <Table.Cell>
+              Charisma
+            </Table.Cell>
+              <Table.Cell>
+              {this.setScore(this.state.character.charisma, "CHA")}
+            </Table.Cell>
+            </Table.Row>
+
+        </Table.Body>
+      </Table>
 
       </div>
     )

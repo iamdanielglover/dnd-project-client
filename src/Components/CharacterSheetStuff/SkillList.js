@@ -1,4 +1,5 @@
 import React from 'react'
+import { Table } from 'semantic-ui-react'
 
 class SkillList extends React.Component {
   state = {
@@ -88,21 +89,22 @@ class SkillList extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <table>
-          <tbody>
-            <tr>
-              <th>
+        <Table compact>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell>
                 Skill
-              </th>
-              <th>
+              </Table.HeaderCell>
+              <Table.HeaderCell>
                 Bonus
-              </th>
-            </tr>
+              </Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>
+            {this.state.skills.map((skill, index) => <Table.Row key={index}><Table.Cell>{skill.name}</Table.Cell><Table.Cell>{this.setSkillBonus(skill)}</Table.Cell></Table.Row>)}
 
-            {this.state.skills.map((skill, index) => <tr key={index}><td>{skill.name}</td><td>{this.setSkillBonus(skill)}</td></tr>)}
-
-          </tbody>
-        </table>
+          </Table.Body>
+        </Table>
 
       </React.Fragment>
     )

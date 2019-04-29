@@ -1,4 +1,5 @@
 import React from 'react'
+import { Table } from 'semantic-ui-react'
 
 class EquipmentProficiencies extends React.Component {
   state = {
@@ -41,23 +42,37 @@ class EquipmentProficiencies extends React.Component {
 
    renderLanguages() {
      if (!this.state.loading) {
-       return this.state.languages.map((excerpt, index) => <li key={index}>{excerpt} - Language</li>)
+       return this.state.languages.map((excerpt, index) => <Table.Row key={index}><Table.Cell>{excerpt}</Table.Cell><Table.Cell>Language</Table.Cell></Table.Row>)
      }
    }
 
    renderProficiencies() {
      if (!this.state.loading) {
-       return this.state.proficiencies.map((excerpt, index) => <li key={index}>{excerpt} - Equipment</li>)
+       return this.state.proficiencies.map((excerpt, index) => <Table.Row key={index}><Table.Cell>{excerpt}</Table.Cell><Table.Cell>Equipment</Table.Cell></Table.Row>)
      }
    }
 
   render() {
     return (
-      <div>
-      <h3>Proficiencies - (What you can use)</h3>
-      {this.renderProficiencies()}
-      {this.renderLanguages()}
-      </div>
+      <React.Fragment>
+        <Table compact>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell>
+                Proficiency
+              </Table.HeaderCell>
+              <Table.HeaderCell>
+                Type
+              </Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+
+          <Table.Body>
+            {this.renderLanguages()}
+            {this.renderProficiencies()}
+          </Table.Body>
+        </Table>
+      </React.Fragment>
     )
   }
 }

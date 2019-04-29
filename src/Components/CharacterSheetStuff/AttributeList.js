@@ -1,5 +1,7 @@
 import React from 'react'
-import './Table.css'
+import { Table } from 'semantic-ui-react'
+import SavingThrows from './SavingThrows.js'
+import EquipmentProficiencies from './EquipmentProficiencies.js'
 
 class AttributeList extends React.Component {
   state = {
@@ -52,58 +54,63 @@ class AttributeList extends React.Component {
   render () {
     return (
       <React.Fragment>
-        <table>
-          <tbody>
-            <tr>
-              <th>
+        <Table compact>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell>
                 Attribute
-              </th>
-              <th>
+              </Table.HeaderCell>
+              <Table.HeaderCell>
                 Score
-              </th>
-              <th>
+              </Table.HeaderCell>
+              <Table.HeaderCell>
                 Ability Score
-              </th>
-            </tr>
+              </Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
 
-            <tr>
-            <td>Strength</td>
-            <td>{this.state.strength}</td>
-            <td>{this.assignAbilityScore(this.state.strength)}</td>
-            </tr>
+          <Table.Body>
+            <Table.Row>
+            <Table.Cell>Strength</Table.Cell>
+            <Table.Cell>{this.state.strength}</Table.Cell>
+            <Table.Cell>{this.assignAbilityScore(this.state.strength)}</Table.Cell>
+            </Table.Row>
 
-            <tr>
-            <td>Dexterity</td>
-            <td>{this.state.dexterity}</td>
-            <td>{this.assignAbilityScore(this.state.dexterity)}</td>
-            </tr>
+            <Table.Row>
+            <Table.Cell>Dexterity</Table.Cell>
+            <Table.Cell>{this.state.dexterity}</Table.Cell>
+            <Table.Cell>{this.assignAbilityScore(this.state.dexterity)}</Table.Cell>
+            </Table.Row>
 
-            <tr>
-            <td>Constitution</td>
-            <td>{this.state.constitution}</td>
-            <td>{this.assignAbilityScore(this.state.constitution)}</td>
-            </tr>
+            <Table.Row>
+            <Table.Cell>Constitution</Table.Cell>
+            <Table.Cell>{this.state.constitution}</Table.Cell>
+            <Table.Cell>{this.assignAbilityScore(this.state.constitution)}</Table.Cell>
+            </Table.Row>
 
-            <tr>
-            <td>Intelligence</td>
-            <td>{this.state.intelligence}</td>
-            <td>{this.assignAbilityScore(this.state.intelligence)}</td>
-            </tr>
+            <Table.Row>
+            <Table.Cell>Intelligence</Table.Cell>
+            <Table.Cell>{this.state.intelligence}</Table.Cell>
+            <Table.Cell>{this.assignAbilityScore(this.state.intelligence)}</Table.Cell>
+            </Table.Row>
 
-            <tr>
-            <td>Wisdom</td>
-            <td>{this.state.wisdom}</td>
-            <td>{this.assignAbilityScore(this.state.wisdom)}</td>
-            </tr>
+            <Table.Row>
+            <Table.Cell>Wisdom</Table.Cell>
+            <Table.Cell>{this.state.wisdom}</Table.Cell>
+            <Table.Cell>{this.assignAbilityScore(this.state.wisdom)}</Table.Cell>
+            </Table.Row>
 
-            <tr>
-            <td>Charisma</td>
-            <td>{this.state.charisma}</td>
-            <td>{this.assignAbilityScore(this.state.charisma)}</td>
-            </tr>
+            <Table.Row>
+            <Table.Cell>Charisma</Table.Cell>
+            <Table.Cell>{this.state.charisma}</Table.Cell>
+            <Table.Cell>{this.assignAbilityScore(this.state.charisma)}</Table.Cell>
+            </Table.Row>
 
-          </tbody>
-        </table>
+          </Table.Body>
+        </Table>
+
+        <SavingThrows char={this.props.char}/>
+        <EquipmentProficiencies char={this.props.char}/>
 
       </React.Fragment>
     )
