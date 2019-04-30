@@ -4,7 +4,8 @@ class UpgradeChar extends React.Component {
   state = {
     character: {
       name: null,
-      experience: null,
+      add_to_experience: 0,
+      starting_experience: null,
       level: null,
     },
     levelThreshold: null,
@@ -17,7 +18,7 @@ class UpgradeChar extends React.Component {
       .then(data => this.setState({
         character: {
           name: data.name,
-          experience: data.experience,
+          starting_experience: data.experience,
           level: data.level,
         },
         loading: false
@@ -26,19 +27,19 @@ class UpgradeChar extends React.Component {
   }
 
   handleChange = (event) => {
-    this.setState({
-      character: { ...this.state.character,
-      experience: event.target.value
-    }
-    })
+      this.setState({
+        character: { ...this.state.character, add_to_experience: event.target.value}
+      })
   }
 
-  patchRequest() {
+  patchRequest = () => {
+    const sum = parseInt(this.state.character.add_to_experience) + parseInt(this.state.character.starting_experience)
     fetch("http://localhost:3000/api/v1/characters/" + this.props.match.params.character_id, {
       method: "PATCH",
       headers: { "Content-Type" : "application/json"},
       body: JSON.stringify({
-        experience: this.state.character.experience
+        experience: sum,
+        level: this.state.character.level
       })
     })
   }
@@ -46,11 +47,13 @@ class UpgradeChar extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    if (this.state.character.experience >= this.state.levelThreshold) {
-      this.patchRequest()
+    if ((parseInt(this.state.character.starting_experience) + parseInt(this.state.character.add_to_experience)) >= this.state.levelThreshold) {
+      this.setState({
+        character: {...this.state.character, level: this.state.character.level + 1}
+      }, () => this.patchRequest())
     }
-    else if (this.state.character.experience < this.state.levelThreshold) {
-      this.patchRequest()
+    else if ((this.state.character.starting_experience + this.state.character.add_to_experience) < this.state.levelThreshold) {
+      this.patchRequest(0)
     }
   }
 
@@ -62,7 +65,7 @@ class UpgradeChar extends React.Component {
         <form onSubmit={this.handleSubmit} >
         <label>
         <h4>Experience</h4>
-          <input type="number" name="experience" value={this.state.character.experience} onChange={this.handleChange} />
+          <input type="number" name="experience" value={this.state.character.add_to_experience} onChange={this.handleChange} />
         </label>
           <button type="submit">Submit</button>
         </form>
