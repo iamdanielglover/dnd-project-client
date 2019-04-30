@@ -20,6 +20,7 @@ class GetName extends React.Component {
   render() {
     return (
       <div className="name-form">
+        <h3>Enter a Name</h3>
         <form onSubmit={this.handleSubmit}>
           <input type="text" placeholder="Enter Name" name="input" value={this.state.input} onChange={this.handleChange} />
           <button type="submit">Submit</button>

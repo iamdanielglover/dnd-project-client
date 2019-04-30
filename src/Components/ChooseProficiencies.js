@@ -1,4 +1,5 @@
 import React from 'react'
+import '../App.css'
 
 class ChooseProficiency extends React.Component {
   state = {
@@ -105,7 +106,7 @@ class ChooseProficiency extends React.Component {
 
   render() {
     return  (
-      <div>
+      <div className="name-form">
           {
             this.finishedLoading()
           }

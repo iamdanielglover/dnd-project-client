@@ -1,4 +1,5 @@
 import React from 'react'
+import "../App.css"
 
 const alignments = [
     "Lawful Good",
@@ -33,12 +34,15 @@ class GetAlignment extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <select value={this.state.alignment} onChange={this.handleChange}>
-          {this.alignmentsList()}
-        </select>
-        <button>Submit</button>
-      </form>
+      <div className="name-form">
+        <h3>Choose an Alignment</h3>
+        <form onSubmit={this.handleSubmit}>
+          <select value={this.state.alignment} onChange={this.handleChange}>
+            {this.alignmentsList()}
+          </select>
+          <button>Submit</button>
+        </form>
+      </div>
     )
   }
 }

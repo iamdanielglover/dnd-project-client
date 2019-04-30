@@ -35,12 +35,15 @@ class GetClass extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <select value={this.state.chosen_klass} onChange={this.handleChange}>
-          {this.renderKlasses()}
-        </select>
-      <input type="submit" value="Submit" />
-      </form>
+      <div className="name-form">
+        <h3>Choose a Class</h3>
+        <form onSubmit={this.handleSubmit}>
+          <select value={this.state.chosen_klass} onChange={this.handleChange}>
+            {this.renderKlasses()}
+          </select>
+        <input type="submit" value="Submit" />
+        </form>
+      </div>
     )
   }
 }

@@ -65,7 +65,7 @@ class App extends React.Component {
     this.props.history.push("/upgrade-character/" + id)
   }
 
-  setCurrentCharacter = (char, callback = () => this.props.history.push("/view-charactersheet")) => {
+  setCurrentCharacter = (char, callback = () => this.props.history.push("/view-charactersheet/" + this.state.character_id)) => {
     this.setState({
       character_id: char.id
     }, callback)
@@ -90,7 +90,7 @@ class App extends React.Component {
                 render={(routerProps) => <ViewChars {...routerProps} user={this.state.user_id} setCurrentCharacter={this.setCurrentCharacter} /> }
               />
               <Route
-                path="/view-charactersheet"
+                path="/view-charactersheet/:character_id"
                 render={(routerProps) => <ViewCharacter {...routerProps} user={this.state.user_id} character={this.state.character_id} sendUpgrade={this.sendUpgrade} /> }
               />
               <Route

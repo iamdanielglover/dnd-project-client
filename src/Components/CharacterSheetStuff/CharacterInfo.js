@@ -110,7 +110,7 @@ class CharacterInfo extends React.Component {
                     Experience
                   </Table.Cell>
                   <Table.Cell>
-                    <button onClick={() => this.props.sendUpgrade(this.props.char)}>{this.state.experience}</button>
+                    {this.state.experience} <button style={{"float": "right"}} onClick={() => this.props.sendUpgrade(this.props.char)}>add XP</button>
                   </Table.Cell>
                 </Table.Row>
 

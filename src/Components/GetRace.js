@@ -35,12 +35,15 @@ class GetRace extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <select value={this.state.chosen_race} onChange={this.handleChange}>
-          {this.renderRaces()}
-        </select>
-      <input type="submit" value="Submit" />
-      </form>
+      <div className="name-form">
+        <h3>Choose a Race</h3>
+        <form onSubmit={this.handleSubmit}>
+          <select value={this.state.chosen_race} onChange={this.handleChange}>
+            {this.renderRaces()}
+          </select>
+        <input type="submit" value="Submit" />
+        </form>
+      </div>
     )
   }
 }

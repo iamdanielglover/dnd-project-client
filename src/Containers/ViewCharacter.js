@@ -7,7 +7,7 @@ import { Grid } from 'semantic-ui-react'
 class ViewCharacter extends React.Component {
   state = {
     loading: true,
-    character: this.props.character,
+    character: this.props.match.params.character_id,
     user: this.props.user
   }
 
@@ -15,15 +15,15 @@ class ViewCharacter extends React.Component {
       return <Grid>
         <Grid.Row>
           <Grid.Column>
-            <CharacterInfo char={this.props.character} sendUpgrade={this.props.sendUpgrade}/>
+            <CharacterInfo char={this.state.character} sendUpgrade={this.props.sendUpgrade}/>
           </Grid.Column>
           </Grid.Row>
         <Grid.Row columns={2}>
           <Grid.Column style={{backgroundColor: "red"}}>
-            <AttributeList char={this.props.character} user={this.props.user}/>
+            <AttributeList char={this.state.character} user={this.props.user}/>
           </Grid.Column>
           <Grid.Column style={{backgroundColor: "blue"}}>
-              <SkillList char={this.props.character}/>
+              <SkillList char={this.state.character}/>
           </Grid.Column>
         </Grid.Row>
       </Grid>
