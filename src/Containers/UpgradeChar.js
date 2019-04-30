@@ -39,21 +39,34 @@ class UpgradeChar extends React.Component {
       headers: { "Content-Type" : "application/json"},
       body: JSON.stringify({
         experience: sum,
-        level: this.state.character.level
       })
     })
   }
 
+  levelUpPatchRequest = (id) => {
+    const sum = parseInt(this.state.character.add_to_experience) + parseInt(this.state.character.starting_experience)
+    fetch("http://localhost:3000/api/v1/characters/" + this.props.match.params.character_id, {
+      method: "PATCH",
+      headers: { "Content-Type" : "application/json"},
+      body: JSON.stringify({
+        experience: sum,
+      })
+    })
+      .then(resp => resp.json())
+      .then(() => this.sendToStatUpgrader(id))
+  }
+
+  sendToStatUpgrader = (id) => {
+    this.props.history.push('/stats-upgrade/' + id)
+  }
 
   handleSubmit = (event) => {
     event.preventDefault()
     if ((parseInt(this.state.character.starting_experience) + parseInt(this.state.character.add_to_experience)) >= this.state.levelThreshold) {
-      this.setState({
-        character: {...this.state.character, level: this.state.character.level + 1}
-      }, () => this.patchRequest())
+      this.levelUpPatchRequest(this.props.match.params.character_id)
     }
     else if ((this.state.character.starting_experience + this.state.character.add_to_experience) < this.state.levelThreshold) {
-      this.patchRequest(0)
+      this.patchRequest()
     }
   }
 
@@ -65,7 +78,7 @@ class UpgradeChar extends React.Component {
         <form onSubmit={this.handleSubmit} >
         <label>
         <h4>Experience</h4>
-          <input type="number" name="experience" value={this.state.character.add_to_experience} onChange={this.handleChange} />
+          <input type="number" name="add_to_experience" value={this.state.character.add_to_experience} onChange={this.handleChange} />
         </label>
           <button type="submit">Submit</button>
         </form>

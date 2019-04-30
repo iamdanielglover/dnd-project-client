@@ -8,6 +8,7 @@ import ViewCharacter from './Containers/ViewCharacter.js'
 import Landing from './Containers/Landing.js'
 import UpgradeChar from './Containers/UpgradeChar.js'
 import ChooseProficiency from './Components/ChooseProficiencies.js'
+import StatsUpgrade from './Components/StatsUpgrade.js'
 import { Container } from 'semantic-ui-react'
 
 class App extends React.Component {
@@ -99,7 +100,11 @@ class App extends React.Component {
               />
               <Route
                 path="/upgrade-character/:character_id"
-                render={(routerProps) => <UpgradeChar {...routerProps} char={this.state.character_id} setProfIds={this.setProfIds} /> }
+                render={(routerProps) => <UpgradeChar {...routerProps} char={this.state.character_id} /> }
+              />
+              <Route
+                path="/stats-upgrade/:character_id"
+                render={(routerProps) => <StatsUpgrade {...routerProps} /> }
               />
             </Switch>
           </Container>
