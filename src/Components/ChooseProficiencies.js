@@ -99,7 +99,7 @@ class ChooseProficiency extends React.Component {
         alert("selected too many")
       }
       if (this.state.chosen_profs.length  <= this.state.choose) {
-        this.props.setProfIds(this.state.chosen_profs, [...this.state.user.characters].reverse()[0].id)
+        this.props.setProfIds(this.state.chosen_profs)
       }
     }
 

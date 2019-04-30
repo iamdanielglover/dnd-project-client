@@ -7,11 +7,20 @@ import { Grid } from 'semantic-ui-react'
 class ViewCharacter extends React.Component {
   state = {
     loading: true,
-    character: this.props.match.params.character_id,
-    user: this.props.user
+    character: null,
+    user: null
+  }
+
+  componentDidMount() {
+    this.setState({
+      loading: false,
+      character: this.props.match.params.character_id,
+      user: this.props.user
+    })
   }
 
   renderCharacter() {
+    if (!this.state.loading)
       return <Grid>
         <Grid.Row>
           <Grid.Column>

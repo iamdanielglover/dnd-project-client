@@ -60,13 +60,12 @@ class ViewChars extends React.Component {
   }
 
 render() {
-  console.log(this.state)
     return (
       <div>
-        <h1>Your Characters</h1>
+        <h1 style={{textAlign: "center"}}>Your Characters</h1>
         {
           this.state.characters ?
-        <Card.Group itemsPerRow={4}>
+        <Card.Group centered itemsPerRow={4}>
           {this.displayListOfNames()}
         </Card.Group>
         :

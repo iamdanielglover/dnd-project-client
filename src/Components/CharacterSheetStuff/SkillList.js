@@ -41,8 +41,8 @@ class SkillList extends React.Component {
 
   setSkillBonus(skill) {
     if (this.state.proficiencies.some(prof => prof.name.includes(skill.name))) {
-      return this.assignAbilityScore(this.findStatByMod(skill.mod)) + this.state.proficiencyBonus
-    } else {
+      return this.assignAbilityScore(this.findStatByMod(skill.mod)) + parseInt(this.state.proficiencyBonus)
+    } else if (!this.state.proficiencies.some(prof => prof.name.includes(skill.name))) {
       return this.assignAbilityScore(this.findStatByMod(skill.mod))
     }
   }
@@ -73,10 +73,11 @@ class SkillList extends React.Component {
   }
 
   getUnique(arr,comp) {
+
      const unique =  arr.map(e=> e[comp])
                     .map((e,i,final) =>final.indexOf(e) === i && i)
                    .filter((e)=> arr[e]).map(e=>arr[e]);
-    return unique
+      return unique
   }
 
   findStatByMod = (a) => {
@@ -87,6 +88,7 @@ class SkillList extends React.Component {
   }
 
   render() {
+    console.log(this.state.proficiencies)
     return (
       <React.Fragment>
         <Table compact>

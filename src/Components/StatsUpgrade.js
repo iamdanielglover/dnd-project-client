@@ -52,59 +52,116 @@ class StatsUpgrade extends React.Component {
 
   determineNewLevel() {
 
-    if (this.state.character.experience >= 300)
+    if (this.state.character.experience <= 300)
+      return 1
+    else if (this.state.character.experience <= 900)
       return 2
-    else if (this.state.character.level >= 900)
+    else if (this.state.character.experience <= 2700)
       return 3
-    else if (this.state.character.level >= 2700)
+    else if (this.state.character.experience <= 6500)
       return 4
-    else if (this.state.character.level >= 6500)
+    else if (this.state.character.experience <= 14000)
       return 5
-    else if (this.state.character.level >= 14000)
+    else if (this.state.character.experience <= 23000)
       return 6
-    else if (this.state.character.level >= 23000)
+    else if (this.state.character.experience <= 34000)
       return 7
-    else if (this.state.character.level >= 34000)
+    else if (this.state.character.experience <= 48000)
       return 8
-    else if (this.state.character.level >= 48000)
+    else if (this.state.character.experience <= 64000)
       return 9
-    else if (this.state.character.level >= 64000)
+    else if (this.state.character.experience <= 85000)
       return 10
-    else if (this.state.character.level >= 85000)
+    else if (this.state.character.experience <= 100000)
       return 11
-    else if (this.state.character.level >= 100000)
+    else if (this.state.character.experience <= 120000)
       return 12
-    else if (this.state.character.level >= 120000)
+    else if (this.state.character.experience <= 140000)
       return 13
-    else if (this.state.character.level >= 140000)
+    else if (this.state.character.experience <= 165000)
       return 14
-    else if (this.state.character.level >= 165000)
+    else if (this.state.character.experience <= 195000)
       return 15
-    else if (this.state.character.level >= 195000)
+    else if (this.state.character.experience <= 225000)
       return 16
-    else if (this.state.character.level >= 225000)
+    else if (this.state.character.experience <= 265000)
       return 17
-    else if (this.state.character.level >= 265000)
+    else if (this.state.character.experience <= 305000)
       return 18
-    else if (this.state.character.level >= 305000)
+    else if (this.state.character.experience <= 355000)
       return 19
-    else if (this.state.character.level >= 355000)
+    else if (this.state.character.experience > 355000)
       return 20
   }
+
+  handleStrengthClick = (stat) => {
+    if (this.state.character.points > 0) {
+        this.setState({ character: {...this.state.character, strength: this.state.character.strength + 1, points: this.state.character.points - 1}})
+    }
+  }
+  handleDexterityClick = (stat) => {
+    if (this.state.character.points > 0) {
+        this.setState({ character: {...this.state.character, dexterity: this.state.character.dexterity + 1, points: this.state.character.points - 1}})
+    }
+  }
+  handleConstitutionClick = () => {
+    if (this.state.character.points > 0) {
+      this.setState({ character: {...this.state.character, constitution: this.state.character.constitution + 1, points: this.state.character.points - 1}})
+    }
+  }
+  handleIntelligenceClick = (stat) => {
+    if (this.state.character.points > 0) {
+        this.setState({ character: {...this.state.character, intelligence: this.state.character.intelligence + 1, points: this.state.character.points - 1}})
+    }
+  }
+  handleWisdomClick = (stat) => {
+    if (this.state.character.points > 0) {
+        this.setState({ character: {...this.state.character, wisdom: this.state.character.wisdom + 1, points: this.state.character.points - 1}})
+    }
+  }
+  handleCharismaClick = (stat) => {
+    if (this.state.character.points > 0) {
+        this.setState({ character: {...this.state.character, charisma: this.state.character.charisma + 1, points: this.state.character.points - 1}})
+    }
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault()
+    this.patchRequest()
+  }
+
+  patchRequest = () => {
+    const newLevel = this.determineNewLevel()
+    fetch("http://localhost:3000/api/v1/characters/" + this.props.match.params.character_id, {
+      method: "PATCH",
+      headers: { "Content-Type" : "application/json"},
+      body: JSON.stringify({
+        level: newLevel,
+        strength: this.state.character.strength,
+        dexterity: this.state.character.dexterity,
+        constitution: this.state.character.constitution,
+        intelligence: this.state.character.intelligence,
+        wisdom: this.state.character.wisdom,
+        charisma: this.state.character.charisma
+      })
+    }).then(resp => resp.json())
+      .then(() => this.props.history.push("/view-charactersheet/" + this.props.match.params.character_id))
+  }
+
+
 
   render() {
     console.log(this.state.character)
     return (
       <React.Fragment>
-        <h1 style={{textAlign: "center", paddingTop: "1%"}}>Level Up!</h1>
-        <small >Points: {this.state.character.points}</small>
+        <h1 style={{textAlign: "center", paddingTop: "1%"}}>You Have Reached Level {this.determineNewLevel()}</h1>
         <Card.Group style={{textAlign: "center", paddingTop: "1%"}} itemsPerRow={3}>
           <Card>
             <Card.Content>
               <Card.Header> Strength </Card.Header>
               <Card.Meta>{this.state.character.strength}</Card.Meta>
             </Card.Content>
-            <Button basic color='green'>
+            <Button basic color='green' onClick={ () => this.handleStrengthClick(this.state.character.strength)}>
             +UPGRADE
           </Button>
           </Card>
@@ -113,7 +170,7 @@ class StatsUpgrade extends React.Component {
               <Card.Header> Dexterity </Card.Header>
               <Card.Meta>{this.state.character.dexterity}</Card.Meta>
             </Card.Content>
-            <Button basic color='green'>
+          <Button basic color='green' onClick={ () => this.handleDexterityClick(this.state.character.dexterity)}>
             +UPGRADE
           </Button>
           </Card>
@@ -122,7 +179,7 @@ class StatsUpgrade extends React.Component {
               <Card.Header> Constitution </Card.Header>
               <Card.Meta>{this.state.character.constitution}</Card.Meta>
             </Card.Content>
-            <Button basic color='green'>
+          <Button basic color='green' onClick={ () => this.handleConstitutionClick()}>
             +UPGRADE
           </Button>
           </Card>
@@ -131,7 +188,7 @@ class StatsUpgrade extends React.Component {
               <Card.Header> Intelligence </Card.Header>
               <Card.Meta>{this.state.character.intelligence}</Card.Meta>
             </Card.Content>
-            <Button basic color='green'>
+          <Button basic color='green' onClick={ () => this.handleIntelligenceClick(this.state.character.intelligence)}>
             +UPGRADE
           </Button>
           </Card>
@@ -140,7 +197,7 @@ class StatsUpgrade extends React.Component {
               <Card.Header> Wisdom </Card.Header>
               <Card.Meta>{this.state.character.wisdom}</Card.Meta>
             </Card.Content>
-            <Button basic color='green'>
+          <Button basic color='green' onClick={ () => this.handleWisdomClick(this.state.character.wisdom)}>
             +UPGRADE
           </Button>
           </Card>
@@ -149,12 +206,19 @@ class StatsUpgrade extends React.Component {
               <Card.Header> Charisma </Card.Header>
               <Card.Meta>{this.state.character.charisma}</Card.Meta>
             </Card.Content>
-            <Button basic color='green'>
+          <Button basic color='green' onClick={ () => this.handleCharismaClick(this.state.character.charisma)}>
             +UPGRADE
           </Button>
           </Card>
         </Card.Group>
-        <p>You are now level {this.determineNewLevel()}</p>
+        <div style={{textAlign: "center", paddingTop: "1%"}}>
+        {
+          this.state.character.points > 0 ?
+            <h4>Points: {this.state.character.points}</h4>
+            :
+            <Button onClick={this.handleSubmit}>Submit</Button>
+        }
+        </div>
       </React.Fragment>
     )
   }

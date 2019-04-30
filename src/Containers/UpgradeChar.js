@@ -40,7 +40,8 @@ class UpgradeChar extends React.Component {
       body: JSON.stringify({
         experience: sum,
       })
-    })
+    }).then(resp => resp.json())
+      .then(() => this.props.history.push("/view-charactersheet/" + this.props.match.params.character_id))
   }
 
   levelUpPatchRequest = (id) => {
@@ -65,7 +66,7 @@ class UpgradeChar extends React.Component {
     if ((parseInt(this.state.character.starting_experience) + parseInt(this.state.character.add_to_experience)) >= this.state.levelThreshold) {
       this.levelUpPatchRequest(this.props.match.params.character_id)
     }
-    else if ((this.state.character.starting_experience + this.state.character.add_to_experience) < this.state.levelThreshold) {
+    else if ((parseInt(this.state.character.starting_experience) + parseInt(this.state.character.add_to_experience)) < this.state.levelThreshold) {
       this.patchRequest()
     }
   }
@@ -129,7 +130,6 @@ class UpgradeChar extends React.Component {
 
 
   render() {
-    console.log(this.state)
     return (
       <React.Fragment>
         {this.renderCharacterInfo()}

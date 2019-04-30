@@ -13,28 +13,25 @@ import { Container } from 'semantic-ui-react'
 
 class App extends React.Component {
   state = {
-      user_id: 1,
+      user_id: 2,
       character_id: 1,
   }
 
   sendCharacterToApi = (character) => {
-    console.log("character " + character.alignment)
     fetch('http://localhost:3000/api/v1/characters', {
       method: 'POST',
       headers: { "Content-Type" : "application/json" },
       body: JSON.stringify(character)
-      }).then((response) => response.json())
-        .then((responseJson) => {
-          this.setCurrentCharacter(character, () => this.moveToProficiencyChoices())
-
-      })
+    })
+    .then(resp => resp.json())
+    .then(data => this.setCurrentCharacter(data, () => this.moveToProficiencyChoices()))
   }
 
   moveToProficiencyChoices = () => {
     this.props.history.push("/choose-proficiencies")
   }
 
-  setProfIds = (chosen_profs, character_id) => {
+  setProfIds = (chosen_profs) => {
     let prof_ids = []
     chosen_profs.forEach(prof => {
         fetch('http://localhost:3000/api/v1/proficiencies')
@@ -45,7 +42,7 @@ class App extends React.Component {
               fetch('http://localhost:3000/api/v1/character_proficiencies', {
                 method: 'POST',
                 headers: { "Content-Type" : "application/json" },
-                body: JSON.stringify({ character_id: character_id, proficiency_id: id})
+                body: JSON.stringify({ character_id: this.state.character_id, proficiency_id: id})
               })
             )
           })
@@ -67,12 +64,14 @@ class App extends React.Component {
   }
 
   setCurrentCharacter = (char, callback = () => this.props.history.push("/view-charactersheet/" + this.state.character_id)) => {
+    console.log("happening")
     this.setState({
       character_id: char.id
     }, callback)
   }
 
   render() {
+    console.log(this.state.character_id)
     return (
       <React.Fragment>
         <Navbar sendHome={this.sendHome} sendList={this.sendList}/>

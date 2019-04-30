@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table, Grid } from 'semantic-ui-react'
+import { Table, Grid, Button } from 'semantic-ui-react'
 
 class CharacterInfo extends React.Component {
   state = {
@@ -30,12 +30,12 @@ class CharacterInfo extends React.Component {
         alignment: data.alignment,
         race_id: data.race_id
       }, () => {
-        fetch('http://localhost:3000/api/v1/races/')
+        fetch('http://localhost:3000/api/v1/races')
 	       .then(resp => resp.json())
 	       .then(data => this.setState({
            race: data.find(raceObj => raceObj.id === this.state.race_id).name
          }, () => {
-           fetch('http://localhost:3000/api/v1/klasses/')
+           fetch('http://localhost:3000/api/v1/klasses')
             .then(resp => resp.json())
             .then(data => this.setState({
               klass: data.find(classObj => classObj.id === this.state.klass_id).name
@@ -110,7 +110,7 @@ class CharacterInfo extends React.Component {
                     Experience
                   </Table.Cell>
                   <Table.Cell>
-                    {this.state.experience} <button style={{"float": "right"}} onClick={() => this.props.sendUpgrade(this.props.char)}>add XP</button>
+                    {this.state.experience} <button style={{float: "right"}} onClick={() => this.props.sendUpgrade(this.props.char)}>add XP</button>
                   </Table.Cell>
                 </Table.Row>
 
@@ -137,7 +137,7 @@ class CharacterInfo extends React.Component {
                     Current HP
                   </Table.Cell>
                   <Table.Cell>
-                    {this.state.current_hp}
+                    {this.state.current_hp}<Button compact style={{float:"right"}} onClick={() => this.setState({current_hp: this.state.current_hp - 1})}>-</Button><Button compact style={{float:"right"}} onClick={() => this.setState({current_hp: this.state.current_hp + 1})}>+</Button>
                   </Table.Cell>
                 </Table.Row>
 
