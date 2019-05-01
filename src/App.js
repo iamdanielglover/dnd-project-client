@@ -7,6 +7,7 @@ import ViewChars from './Containers/ViewChars.js'
 import ViewCharacter from './Containers/ViewCharacter.js'
 import Landing from './Containers/Landing.js'
 import Login from './Auth/Login.js'
+import Signup from './Auth/Signup.js'
 import UpgradeChar from './Containers/UpgradeChar.js'
 import ChooseProficiency from './Components/ChooseProficiencies.js'
 import StatsUpgrade from './Components/StatsUpgrade.js'
@@ -14,7 +15,8 @@ import { Container } from 'semantic-ui-react'
 
 class App extends React.Component {
   state = {
-      user_id: 2,
+      user_id: null,
+      username: null,
       character_id: 1,
   }
 
@@ -68,6 +70,14 @@ class App extends React.Component {
     this.props.history.push("/upgrade-character/" + id)
   }
 
+  sendSignup = () => {
+    this.props.history.push("/signup")
+  }
+
+  sendLogin = () => {
+    this.props.history.push("/login")
+  }
+
   setCurrentCharacter = (char, callback = () => this.props.history.push("/view-charactersheet/" + this.state.character_id)) => {
     console.log("happening")
     this.setState({
@@ -75,13 +85,56 @@ class App extends React.Component {
     }, callback)
   }
 
+  login = (response) => {
+		this.setState({
+			user_id: response.user.id,
+      username: response.user.username
+		}, () => {
+			localStorage.setItem("token", response.token)
+			this.props.history.push("/")
+		})
+	}
+
+  logOut = () => {
+  localStorage.removeItem("token")
+
+  this.setState({
+    user_id: null
+  }, () => this.props.history.push("/login"))
+}
+
+  componentDidMount() {
+		const token = localStorage.getItem("token")
+
+		if(token){
+			fetch("http://localhost:3000/api/v1/auto_login", {
+				headers: {
+					"Authorization": token
+				}
+			})
+			.then(res => res.json())
+			.then(response => {
+				if(response.errors){
+					alert(response.errors)
+				} else {
+          this.setState({
+      			user_id: response.user.id,
+            username: response.user.username
+      		})
+				}
+			})
+		}
+	}
+
   render() {
-    console.log(this.state.character_id)
+    console.log(this.state)
     return (
       <React.Fragment>
-        <Navbar sendHome={this.sendHome} sendList={this.sendList}/>
+        <Navbar sendHome={this.sendHome} sendList={this.sendList} user={this.state.user_id} logOut={this.logOut} sendSignup={this.sendSignup} sendLogin={this.sendLogin}/>
           <Container>
             <Switch>
+              {this.state.user_id ?
+                <React.Fragment>
               <Route
                 exact path="/"
                 render={(routerProps) => <Landing {...routerProps} /> }
@@ -110,10 +163,19 @@ class App extends React.Component {
                 path="/stats-upgrade/:character_id"
                 render={(routerProps) => <StatsUpgrade {...routerProps} /> }
               />
+            </React.Fragment>
+            :
+            <React.Fragment>
               <Route
                 path="/login"
-                render={(routerProps) => <Login {...routerProps} /> }
+                render={(routerProps) => <Login {...routerProps} login={this.login} /> }
               />
+              <Route
+                path="/signup"
+                render={(routerProps) => <Signup {...routerProps} login={this.login} /> }
+              />
+            </React.Fragment>
+          }
             </Switch>
           </Container>
       </React.Fragment>

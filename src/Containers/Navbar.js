@@ -8,23 +8,54 @@ class Navbar extends React.Component {
   }
 
   handleClickCharacters = () => {
-    this.props.sendList() 
+    this.props.sendList()
+  }
+
+  whatToRender = () => {
+    if (this.props.user) {
+      return (
+        <Menu style={{backgroundColor: "#d4d4d594"}}>
+            <Menu.Item
+            onClick={() => this.handleClickHome()}
+            >
+            Home
+          </Menu.Item>
+          <Menu.Item
+            onClick={() => this.handleClickCharacters()}
+            >
+            Characters
+          </Menu.Item>
+          <Menu.Item
+            onClick={() => this.props.logOut()}
+            >
+            Logout
+          </Menu.Item>
+        </Menu>
+      )
+    }
+     if (this.props.user === null) {
+      return (
+        <Menu style={{backgroundColor: "#d4d4d594"}}>
+          <Menu.Item
+            onClick={() => this.props.sendLogin()}
+            >
+            Login
+          </Menu.Item>
+          <Menu.Item
+            onClick={() => this.props.sendSignup()}
+            >
+            Signup
+          </Menu.Item>
+        </Menu>
+      )
+    }
   }
 
   render() {
     return (
-      <Menu style={{backgroundColor: "#d4d4d594"}}>
-        <Menu.Item
-          onClick={() => this.handleClickHome()}
-          >
-          Home
-        </Menu.Item>
-        <Menu.Item
-          onClick={() => this.handleClickCharacters()}
-          >
-          Characters
-        </Menu.Item>
-      </Menu>
+      <React.Fragment>
+        {this.whatToRender()}
+      </React.Fragment>
     )
   }
 }
