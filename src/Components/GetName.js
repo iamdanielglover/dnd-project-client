@@ -7,6 +7,7 @@ class GetName extends React.Component {
   }
 
   handleChange = (event) => {
+    if (event.target.value.length < 20)
     this.setState({
       [event.target.name]: event.target.value
     })

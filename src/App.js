@@ -6,6 +6,7 @@ import CreateCharacter from './Containers/CreateCharacter.js'
 import ViewChars from './Containers/ViewChars.js'
 import ViewCharacter from './Containers/ViewCharacter.js'
 import Landing from './Containers/Landing.js'
+import Login from './Auth/Login.js'
 import UpgradeChar from './Containers/UpgradeChar.js'
 import ChooseProficiency from './Components/ChooseProficiencies.js'
 import StatsUpgrade from './Components/StatsUpgrade.js'
@@ -48,7 +49,11 @@ class App extends React.Component {
           })
         }
       )
-      this.sendHome()
+      this.sendToCharacter()
+  }
+
+  sendToCharacter = () => {
+    this.props.history.push("/view-charactersheet/" + this.state.character_id)
   }
 
   sendHome = () => {
@@ -104,6 +109,10 @@ class App extends React.Component {
               <Route
                 path="/stats-upgrade/:character_id"
                 render={(routerProps) => <StatsUpgrade {...routerProps} /> }
+              />
+              <Route
+                path="/login"
+                render={(routerProps) => <Login {...routerProps} /> }
               />
             </Switch>
           </Container>
