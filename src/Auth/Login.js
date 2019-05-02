@@ -38,7 +38,7 @@ class LoginForm extends React.Component {
 
 	render(){
 		return (
-      <React.Fragment>
+      <div>
       <h1>Please Login</h1>
   			<Form onSubmit={this.handleSubmit}>
   		    <Form.Field>
@@ -51,7 +51,7 @@ class LoginForm extends React.Component {
   		    </Form.Field>
   		    <Button type='submit'>Submit</Button>
   		  </Form>
-      </React.Fragment>
+      </div>
 		)
 	}
 }

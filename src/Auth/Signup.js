@@ -43,7 +43,7 @@ class SignupForm extends React.Component {
 
 	render(){
 		return (
-      <React.Fragment>
+      <div>
       <h1>Welcome to the community</h1>
   			<Form onSubmit={this.handleSubmit}>
   		    <Form.Field>
@@ -60,7 +60,7 @@ class SignupForm extends React.Component {
   		    </Form.Field>
   		    <Button type='submit'>Submit</Button>
   		  </Form>
-      </React.Fragment>
+      </div>
 		)
 	}
 }

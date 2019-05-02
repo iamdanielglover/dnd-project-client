@@ -2,7 +2,7 @@ import React from 'react'
 import AttributeList from '../Components/CharacterSheetStuff/AttributeList.js'
 import CharacterInfo from '../Components/CharacterSheetStuff/CharacterInfo.js'
 import SkillList from '../Components/CharacterSheetStuff/SkillList.js'
-import { Grid } from 'semantic-ui-react'
+import { Grid, Button } from 'semantic-ui-react'
 
 class ViewCharacter extends React.Component {
   state = {
@@ -19,6 +19,10 @@ class ViewCharacter extends React.Component {
     })
   }
 
+  handleClick = () => {
+    this.props.history.push("/spellbook/" + this.state.character)
+  }
+
   renderCharacter() {
     if (!this.state.loading)
       return <Grid>
@@ -33,6 +37,9 @@ class ViewCharacter extends React.Component {
           </Grid.Column>
           <Grid.Column style={{backgroundColor: "blue"}}>
               <SkillList char={this.state.character}/>
+              <Button onClick={this.handleClick}>Spellbook</Button>
+              <Button>Weapons</Button>
+              <Button>Armor</Button>
           </Grid.Column>
         </Grid.Row>
       </Grid>

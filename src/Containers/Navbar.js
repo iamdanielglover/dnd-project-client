@@ -26,6 +26,7 @@ class Navbar extends React.Component {
             Characters
           </Menu.Item>
           <Menu.Item
+          position={"right"}
             onClick={() => this.props.logOut()}
             >
             Logout

@@ -11,6 +11,8 @@ import Signup from './Auth/Signup.js'
 import UpgradeChar from './Containers/UpgradeChar.js'
 import ChooseProficiency from './Components/ChooseProficiencies.js'
 import StatsUpgrade from './Components/StatsUpgrade.js'
+import SpellSearcher from './Components/CharacterSpellbook/SpellSearcher.js'
+import Spellbook from './Components/CharacterSpellbook/Spellbook.js'
 import { Container } from 'semantic-ui-react'
 
 class App extends React.Component {
@@ -162,6 +164,14 @@ class App extends React.Component {
               <Route
                 path="/stats-upgrade/:character_id"
                 render={(routerProps) => <StatsUpgrade {...routerProps} /> }
+              />
+              <Route
+                path="/search-spells/:character_id"
+                render={(routerProps) => <SpellSearcher {...routerProps} /> }
+              />
+              <Route
+                path="/spellbook/:character_id"
+                render={(routerProps) => <Spellbook {...routerProps} /> }
               />
             </React.Fragment>
             :
