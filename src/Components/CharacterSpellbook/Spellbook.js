@@ -22,7 +22,7 @@ class Spellbook extends React.Component {
   }
 
   handleClick = (spell) => {
-    console.log(spell.name)
+      this.props.history.push('/show-spell/' + spell.id)
   }
 
   render() {

@@ -13,6 +13,7 @@ import ChooseProficiency from './Components/ChooseProficiencies.js'
 import StatsUpgrade from './Components/StatsUpgrade.js'
 import SpellSearcher from './Components/CharacterSpellbook/SpellSearcher.js'
 import Spellbook from './Components/CharacterSpellbook/Spellbook.js'
+import Spell from './Components/CharacterSpellbook/Spell.js'
 import { Container } from 'semantic-ui-react'
 
 class App extends React.Component {
@@ -172,6 +173,10 @@ class App extends React.Component {
               <Route
                 path="/spellbook/:character_id"
                 render={(routerProps) => <Spellbook {...routerProps} /> }
+              />
+              <Route
+                path="/show-spell/:spell_id"
+                render={(routerProps) => <Spell {...routerProps} /> }
               />
             </React.Fragment>
             :
