@@ -14,6 +14,11 @@ import StatsUpgrade from './Components/StatsUpgrade.js'
 import SpellSearcher from './Components/CharacterSpellbook/SpellSearcher.js'
 import Spellbook from './Components/CharacterSpellbook/Spellbook.js'
 import Spell from './Components/CharacterSpellbook/Spell.js'
+import UnaddedSpell from './Components/CharacterSpellbook/UnaddedSpell.js'
+import WeaponList from './Components/CharacterInventory/WeaponList.js'
+import Arsenal from './Components/CharacterInventory/Arsenal.js'
+import ArmorList from './Components/CharacterInventory/ArmorList.js'
+
 import { Container } from 'semantic-ui-react'
 
 class App extends React.Component {
@@ -177,6 +182,22 @@ class App extends React.Component {
               <Route
                 path="/show-spell/:spell_id"
                 render={(routerProps) => <Spell {...routerProps} /> }
+              />
+              <Route
+                path="/unadded-spell/:api_id"
+                render={(routerProps) => <UnaddedSpell {...routerProps} character={this.state.character_id} /> }
+              />
+              <Route
+                path="/weapon-list/:character_id"
+                render={(routerProps) => <WeaponList {...routerProps} /> }
+              />
+              <Route
+                path="/arsenal/:character_id"
+                render={(routerProps) => <Arsenal {...routerProps} /> }
+              />
+              <Route
+                path="/armory/:character_id"
+                render={(routerProps) => <ArmorList {...routerProps} /> }
               />
             </React.Fragment>
             :

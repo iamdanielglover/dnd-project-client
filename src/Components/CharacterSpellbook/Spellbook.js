@@ -29,6 +29,7 @@ class Spellbook extends React.Component {
     console.log(this.state)
     return (
       <div>
+      <Button onClick={() => this.props.history.push('/view-charactersheet/' + this.state.character_id)}>Back to Character</Button>
       <Button onClick={this.handleSpellSearchClick}>Search Spells</Button>
       <Table compact>
       <Table.Header>
@@ -37,7 +38,7 @@ class Spellbook extends React.Component {
               Name
             </Table.HeaderCell>
             <Table.HeaderCell>
-              Show
+              View Details
             </Table.HeaderCell>
           </Table.Row>
         </Table.Header>
