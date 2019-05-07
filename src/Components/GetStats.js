@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table } from 'semantic-ui-react'
+import { Table, Button } from 'semantic-ui-react'
 import '../App.css'
 
 class GetStats extends React.Component {
@@ -43,23 +43,19 @@ class GetStats extends React.Component {
 
   render() {
     return (
-        <div>
+        <div style={{paddingTop: "10%"}}>
           <h4>Aim to balance your character's stats so that they compliment the class that you picked previously.</h4>
-          <ul>
-            <li>Strength - Reflects how physically strong a character is.</li>
-            <li>Dexterity - A measurement of how agile & nimble a character can be.</li>
-            <li>Constitution - The measurement of sturdiness.</li>
-            <li>Intelligence - How fast the character's mind works. Effects learning new skills and problem solving.</li>
-            <li>Wisdom - A character's common-sense, sensibilities and spirituality.</li>
-            <li>Charisma - Is the measure of a character's likeability, social skills and sometimes can be used to describe their demeanour.</li>
-          </ul>
+          <small style={{float: "right"}}> e.g. A fighter class would focus points into strength, a wizard in intelligence.</small>
           <form className="stats-form" onSubmit={this.handleSubmit}>
-            <small> e.g. A fighter class would focus points into strength, a wizard in intelligence.</small>
-          <Table compact>
+
+          <Table compact id="add-font">
             <Table.Header>
               <Table.Row>
                 <Table.HeaderCell>
                   Attribute
+                </Table.HeaderCell>
+                <Table.HeaderCell>
+                  Description
                 </Table.HeaderCell>
                 <Table.HeaderCell>
                   Number
@@ -69,7 +65,8 @@ class GetStats extends React.Component {
 
             <Table.Body>
               <Table.Row>
-                <Table.Cell>Strength</Table.Cell>
+                <Table.Cell style={{fontWeight: "bold"}}>Strength</Table.Cell>
+                <Table.Cell>Reflects how physically strong a character is.</Table.Cell>
                 <Table.Cell>
 
                   <select name="strength" value={this.state.strength} onChange={this.handleChange}>
@@ -80,7 +77,8 @@ class GetStats extends React.Component {
               </Table.Row>
 
               <Table.Row>
-                <Table.Cell>Dexterity</Table.Cell>
+                <Table.Cell style={{fontWeight: "bold"}}>Dexterity</Table.Cell>
+                <Table.Cell>A measurement of how agile & nimble a character can be.</Table.Cell>
                 <Table.Cell>
 
                   <select name="dexterity" value={this.state.dexterity} onChange={this.handleChange}>
@@ -91,7 +89,8 @@ class GetStats extends React.Component {
               </Table.Row>
 
               <Table.Row>
-                <Table.Cell>Constitution</Table.Cell>
+                <Table.Cell style={{fontWeight: "bold"}}>Constitution</Table.Cell>
+                <Table.Cell>The measurement of sturdiness.</Table.Cell>
                 <Table.Cell>
 
                   <select name="constitution" value={this.state.constitution} onChange={this.handleChange}>
@@ -102,7 +101,8 @@ class GetStats extends React.Component {
               </Table.Row>
 
               <Table.Row>
-                <Table.Cell>Intelligence</Table.Cell>
+                <Table.Cell style={{fontWeight: "bold"}}>Intelligence</Table.Cell>
+                <Table.Cell>How fast the character's mind works. Effects learning new skills and problem solving.</Table.Cell>
                 <Table.Cell>
 
                   <select name="intelligence" value={this.state.intelligence} onChange={this.handleChange}>
@@ -113,7 +113,8 @@ class GetStats extends React.Component {
               </Table.Row>
 
               <Table.Row>
-                <Table.Cell>Wisdom</Table.Cell>
+                <Table.Cell style={{fontWeight: "bold"}}>Wisdom</Table.Cell>
+                <Table.Cell>A character's common-sense, sensibilities and spirituality.</Table.Cell>
                 <Table.Cell>
 
                   <select name="wisdom" value={this.state.wisdom} onChange={this.handleChange}>
@@ -124,7 +125,8 @@ class GetStats extends React.Component {
               </Table.Row>
 
               <Table.Row>
-                <Table.Cell>Charisma</Table.Cell>
+                <Table.Cell style={{fontWeight: "bold"}}>Charisma</Table.Cell>
+                <Table.Cell>Is the measure of a character's likeability, social skills and sometimes can be used to describe their demeanour.</Table.Cell>
                 <Table.Cell>
 
                   <select name="charisma" value={this.state.charisma} onChange={this.handleChange}>
@@ -136,7 +138,7 @@ class GetStats extends React.Component {
 
             </Table.Body>
           </Table>
-          <button>Submit</button>
+          <Button>Submit</Button>
         </form><br/>
       <em>Spend {75 - this.setTotal()} points</em>
       </div>

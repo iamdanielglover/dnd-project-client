@@ -86,7 +86,6 @@ class ChooseProficiency extends React.Component {
       if (!this.state.loading)
       return (
         <React.Fragment>
-          <h3>Choose {this.state.choose} Skill proficiencies</h3>
           <form onSubmit={this.handleSubmit}>
             {this.renderFormAfterLoad()}
             <br/>
@@ -110,9 +109,10 @@ class ChooseProficiency extends React.Component {
   render() {
     return  (
       <div style={{marginTop: "12.5%"}}>
-        <Card id='card-border' centered>
+        <Card id='card-border' centered style={{width: "30vw"}}>
           <Card.Content>
-            <Card.Header id='add-font'>Choose An Alignment</Card.Header>
+            <Card.Header id='add-font'>Pick {this.state.choose} Skill proficiencies</Card.Header>
+            <br/>
           {
             this.finishedLoading()
           }

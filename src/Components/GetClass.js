@@ -88,7 +88,7 @@ class GetClass extends React.Component {
 
   render() {
     return (
-      <div style={{paddingTop: "15%"}}>
+      <div style={{paddingTop: "10%"}}>
           <Grid>
             <Grid.Row columns={2}>
               <Grid.Column>
@@ -107,7 +107,7 @@ class GetClass extends React.Component {
                 </Card>
               </Grid.Column>
               <Grid.Column>
-                <h1>Description of Class</h1>
+                <h1>Description of {this.state.chosen_klass}</h1>
                   {this.description()}
               </Grid.Column>
             </Grid.Row>

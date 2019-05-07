@@ -78,7 +78,7 @@ class GetRace extends React.Component {
 
   render() {
     return (
-      <div style={{paddingTop: "15%"}}>
+      <div style={{paddingTop: "10%"}}>
         <Grid>
           <Grid.Row columns={2}>
             <Grid.Column>
@@ -97,7 +97,7 @@ class GetRace extends React.Component {
               </Card>
             </Grid.Column>
             <Grid.Column>
-              <h1>Race Description</h1>
+              <h1>Race Description - {this.state.chosen_race}</h1>
                 {this.description()}
             </Grid.Column>
           </Grid.Row>
@@ -110,40 +110,3 @@ class GetRace extends React.Component {
 
 
 export default GetRace
-//
-//  renderCategories = () => this.props.categories.map((category, index) => <option key={index} value={category.name}> {category.name} </option>)
-//
-// handleSubmit = (e) => {
-//  e.preventDefault()
-//  this.props.pageFunc("new note")
-//  const category = this.props.categories.find(category => category.name === this.state.value)
-//  this.props.setCat(category)
-// }
-//
-// handleChange = (event) => {
-//   this.setState({
-//     value: event.target.value
-//   })
-// }
-//
-//  render() {
-//    return (
-//      <form onSubmit={this.handleSubmit} >
-//        <select value={this.state.value} onChange={this.handleChange}>
-//          {this.renderCategories()}
-//        </select>
-//      <input type="submit" value="Submit" />
-//      </form>
-//    )
-//  }
-// }
-
-// <div className="name-form">
-//   <h3>Choose a Race</h3>
-//   <form onSubmit={this.handleSubmit}>
-//     <select value={this.state.chosen_race} onChange={this.handleChange}>
-//       {this.renderRaces()}
-//     </select>
-//   <input type="submit" value="Submit" />
-//   </form>
-// </div>
