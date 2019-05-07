@@ -4,6 +4,7 @@ import CharacterInfo from '../Components/CharacterSheetStuff/CharacterInfo.js'
 import SkillList from '../Components/CharacterSheetStuff/SkillList.js'
 import EquippedWeapon from '../Components/CharacterInventory/EquippedWeapon.js'
 import EquippedArmor from '../Components/CharacterInventory/EquippedArmor.js'
+import './StyleSheet.css'
 import { Grid, Button, Table } from 'semantic-ui-react'
 
 class ViewCharacter extends React.Component {
@@ -34,7 +35,7 @@ class ViewCharacter extends React.Component {
     console.log(this.state)
     // if (!this.state.loading && this.state.characters.some(character => character === this.state.character))
     if (!this.state.loading)
-      return <Grid>
+      return <Grid className={'main'}>
         <Grid.Row>
           <Grid.Column>
             <CharacterInfo char={this.state.character} sendUpgrade={this.props.sendUpgrade}/>
@@ -55,12 +56,12 @@ class ViewCharacter extends React.Component {
 
               <SkillList char={this.state.character}/>
 
-              <Table compact>
+              <Table className={'main'} compact>
                 <Table.Header>
                   <Table.Row>
                     <Table.HeaderCell>Weapon</Table.HeaderCell>
                     <Table.HeaderCell>ATK Bonus</Table.HeaderCell>
-                    <Table.HeaderCell>ATK Bonus (ranged/small weaps)</Table.HeaderCell>
+                    <Table.HeaderCell>ATK Bonus (ranged/small weps)</Table.HeaderCell>
                     <Table.HeaderCell>Damage</Table.HeaderCell>
                   </Table.Row>
                 </Table.Header>

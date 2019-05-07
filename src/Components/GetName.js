@@ -1,4 +1,5 @@
 import React from 'react'
+import { Card, Button, Form } from "semantic-ui-react"
 import '../App.css'
 
 class GetName extends React.Component {
@@ -20,13 +21,20 @@ class GetName extends React.Component {
 
   render() {
     return (
-      <div className="name-form">
-        <h3>Enter a Name</h3>
-        <form onSubmit={this.handleSubmit}>
-          <input type="text" placeholder="Enter Name" name="input" value={this.state.input} onChange={this.handleChange} />
-          <button type="submit">Submit</button>
-        </form>
-      </div>
+        <div style={{paddingTop: "15%"}}>
+          <Card id='card-border' centered>
+            <Card.Content textAlign={"center"}>
+              <Card.Header id='add-font'>Enter A Name</Card.Header>
+                <Form.Field style={{marginTop: "8%"}}>
+                  <Form onSubmit={this.handleSubmit}>
+                      <input type="text" placeholder="Enter Name" name="input" value={this.state.input} onChange={this.handleChange} />
+                      <br/>
+                      <Button style={{marginTop: "8%"}} fluid={true} type="submit">Submit</Button>
+                  </Form>
+                </Form.Field>
+            </Card.Content>
+          </Card>
+        </div>
     )
   }
 }

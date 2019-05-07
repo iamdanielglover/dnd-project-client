@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css?family=Cinzel+Decorative');
+
+.landing {
+  font-family: 'Cinzel Decorative', cursive;
+  font-size: 80px;
+}
+
+#landing {
+  font-family: 'Cinzel Decorative', cursive;
+}
+
+#card-border {
+  border: 20px solid;
+  border-image:url(http://clipart-library.com/images/rinrMzgRT.jpg);
+  border-image-slice:170;
+}

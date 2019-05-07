@@ -1,5 +1,6 @@
 import React from 'react'
 import { Menu } from 'semantic-ui-react'
+import './Landing.css'
 
 class Navbar extends React.Component {
 
@@ -14,7 +15,8 @@ class Navbar extends React.Component {
   whatToRender = () => {
     if (this.props.user) {
       return (
-        <Menu style={{backgroundColor: "#d4d4d594"}}>
+        <Menu id="landing" inverted={true} style={{height: "60px"}}>
+            <Menu.Item>CHAR-me-D&D</Menu.Item>
             <Menu.Item
             onClick={() => this.handleClickHome()}
             >
@@ -36,7 +38,8 @@ class Navbar extends React.Component {
     }
      if (this.props.user === null) {
       return (
-        <Menu style={{backgroundColor: "#d4d4d594"}}>
+        <Menu id="landing" inverted={true} style={{height: "60px"}}>
+          <Menu.Item>CHAR-me-D&D</Menu.Item>
           <Menu.Item
             onClick={() => this.props.sendLogin()}
             >

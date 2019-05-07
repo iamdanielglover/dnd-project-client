@@ -49,3 +49,34 @@ class GetClass extends React.Component {
 }
 
 export default GetClass
+
+  render() {
+    return (
+      <div style={{paddingTop: "15%"}}>
+        <Grid>
+          <Grid.Row columns={2}>
+            <Grid.Column>
+              <Card id='card-border' centered>
+                <Card.Content textAlign={"center"}>
+                  <Card.Header id='add-font'>Choose A Race</Card.Header>
+                    <Form.Field style={{marginTop: "8%"}}>
+                      <Form onSubmit={this.handleSubmit}>
+                        <select value={this.state.chosen_race} onChange={this.handleChange}>
+                          {this.renderRaces()}
+                        </select>
+                          <Button style={{marginTop: "8%"}} fluid={true} type="submit">Submit</Button>
+                      </Form>
+                    </Form.Field>
+                </Card.Content>
+              </Card>
+            </Grid.Column>
+            <Grid.Column>
+              <h1>Race Description</h1>
+                {this.description()}
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </div>
+    )
+  }
+}

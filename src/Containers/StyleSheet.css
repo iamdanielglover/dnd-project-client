@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css?family=Gaegu');
+@import url('https://fonts.googleapis.com/css?family=Cinzel+Decorative');
+
+.main {
+  font-family: 'Gaegu', cursive;
+}
+
+#hero-image {
+  background-image: url("https://images.unsplash.com/photo-1519074069444-1ba4fff66d16?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80");
+  display: flex;
+  height: 100vh;
+  margin: 0;
+}
+
+#card-border {
+  border: 20px solid;
+  border-image:url(http://clipart-library.com/images/rinrMzgRT.jpg);
+  border-image-slice: 170;
+}
+
+#add-font {
+  font-family: 'Cinzel Decorative', cursive;
+}
+
+/* style={{height: "600px",
+ width: "600px",
+  backgroundImage: "url('https://images.unsplash.com/photo-1551127481-43279ba6dec4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80')",
+   left:"25%"}} */
