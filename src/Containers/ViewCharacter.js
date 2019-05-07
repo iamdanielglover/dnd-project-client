@@ -35,7 +35,7 @@ class ViewCharacter extends React.Component {
     console.log(this.state)
     // if (!this.state.loading && this.state.characters.some(character => character === this.state.character))
     if (!this.state.loading)
-      return <Grid className={'main'}>
+      return <Grid className={'main'} id="card-border-2">
         <Grid.Row>
           <Grid.Column>
             <CharacterInfo char={this.state.character} sendUpgrade={this.props.sendUpgrade}/>

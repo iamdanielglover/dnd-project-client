@@ -1,5 +1,6 @@
 import React from 'react'
-import { Card } from 'semantic-ui-react'
+import { Card, Button } from 'semantic-ui-react'
+import './StyleSheet.css'
 
 class ViewChars extends React.Component {
   state = {
@@ -40,7 +41,7 @@ class ViewChars extends React.Component {
 
   displayListOfNames = () => {
     if (!this.state.loading) {
-      return this.state.characters.map((character, index) =>   <Card  key={index} onClick={() => this.handleClick(character)}>
+      return this.state.characters.map((character, index) =>   <Card id="card-border"  key={index}>
           <Card.Content>
             <Card.Header>{character.name}</Card.Header>
             <Card.Meta>
@@ -50,6 +51,8 @@ class ViewChars extends React.Component {
             <Card.Description>Race: {this.findCharacterRace(character)}</Card.Description>
             <Card.Description>Class: {this.findCharacterClass(character)}</Card.Description>
           </Card.Content>
+              <Button compact onClick={() => this.handleClick(character)}>View</Button>
+              <Button negative={true} compact onClick={() => this.handleDeleteClick(character)}>Delete</Button>
         </Card>
       )
     }
@@ -57,6 +60,14 @@ class ViewChars extends React.Component {
 
   handleClick = (char) => {
     this.props.setCurrentCharacter(char)
+  }
+
+  handleDeleteClick = (character) => {
+    fetch('http://localhost:3000/api/v1/characters/' + character.id, {method: 'DELETE'})
+    .then(resp => resp.json())
+    .then(data => this.setState({
+      characters: [...this.state.characters.filter(char => char.id !== data.id)]
+    }))
   }
 
 render() {

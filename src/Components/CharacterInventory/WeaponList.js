@@ -5,6 +5,7 @@ class WeaponList extends React.Component {
   state = {
     weapons: [],
     character: {},
+    character_weapons: [],
     searchTerm: "",
   }
 
@@ -12,12 +13,13 @@ class WeaponList extends React.Component {
         fetch('http://localhost:3000/api/v1/characters/' + this.props.match.params.character_id)
           .then(resp => resp.json())
           .then(data => this.setState({
-            character: data
+            character: data,
+            character_weapons: data.weapons.map(wep => wep.id)
           }, () => {
             fetch('http://localhost:3000/api/v1/weapons')
               .then(resp => resp.json())
               .then(data => this.setState({
-                weapons: data
+                weapons: data.filter(weapon => !this.state.character_weapons.includes(weapon.id))
           }))
       })
     )
@@ -76,6 +78,8 @@ class WeaponList extends React.Component {
         weapon_id: wep.id
       })
     })
+      .then(resp => resp.json())
+      .then(data => this.setState({ weapons: [...this.state.weapons.filter(wep => wep.id !== data.weapon_id)] }))
   }
 
   handleChange = (e) => {

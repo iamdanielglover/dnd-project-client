@@ -1,5 +1,6 @@
 import React from 'react'
 import '../App.css'
+import {  Card, Button } from 'semantic-ui-react'
 
 class ChooseProficiency extends React.Component {
   state = {
@@ -75,6 +76,7 @@ class ChooseProficiency extends React.Component {
               <input type="checkbox" value={false} onChange={(event) => this.addProficiency(event, prof)} />
                 {prof.name.slice(7)}
             </label>
+            <br/>
           </div>
         )
       })
@@ -87,7 +89,8 @@ class ChooseProficiency extends React.Component {
           <h3>Choose {this.state.choose} Skill proficiencies</h3>
           <form onSubmit={this.handleSubmit}>
             {this.renderFormAfterLoad()}
-            <button>Submit</button>
+            <br/>
+            <Button floated={"right"} >Submit</Button>
           </form>
         </React.Fragment>
       )
@@ -106,10 +109,15 @@ class ChooseProficiency extends React.Component {
 
   render() {
     return  (
-      <div className="name-form">
+      <div style={{marginTop: "12.5%"}}>
+        <Card id='card-border' centered>
+          <Card.Content>
+            <Card.Header id='add-font'>Choose An Alignment</Card.Header>
           {
             this.finishedLoading()
           }
+          </Card.Content>
+        </Card>
       </div>
       )
   }

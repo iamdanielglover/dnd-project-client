@@ -35,7 +35,7 @@ class Spellbook extends React.Component {
   }
 
   handleEquipClick = (weapon) => {
-    fetch('http://localhost:3000/api/v1/characters/1', {
+    fetch('http://localhost:3000/api/v1/characters/' + this.state.character_id, {
       method: "PATCH",
       headers: { "Content-Type" : "application/json" },
       body: JSON.stringify({ current_weapon_id: weapon.id })
@@ -45,13 +45,16 @@ class Spellbook extends React.Component {
   }
 
   handleDropClick = (weapon) => {
-      console.log(weapon)
+      fetch('http://localhost:3000/api/v1/character_weapons/' + weapon.id, { method: 'DELETE'})
+        .then(resp => resp.json())
+        .then(data => this.setState({ weapons: this.state.weapons.filter(wep => wep.id !== weapon.id)}))
   }
 
   render() {
     console.log(this.state)
     return (
       <div>
+        <h1>Weapon Inventory</h1>
       <Button onClick={() => this.props.history.push('/view-charactersheet/' + this.state.character_id)}>Back to Character</Button>
       <Button onClick={this.handleWeaponSearchClick}>Search Weapons</Button>
       <Table compact>

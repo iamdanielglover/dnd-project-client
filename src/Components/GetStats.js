@@ -138,7 +138,7 @@ class GetStats extends React.Component {
           </Table>
           <button>Submit</button>
         </form><br/>
-          <em>Spend {75 - this.setTotal()} points</em>
+      <em>Spend {75 - this.setTotal()} points</em>
       </div>
     )
   }

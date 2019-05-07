@@ -18,6 +18,12 @@
   border-image-slice: 170;
 }
 
+#card-border-2 {
+  border: 20px solid;
+  border-image:url(https://images.unsplash.com/photo-1546484396-fb3fc6f95f98?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80);
+  border-image-slice: 170;
+}
+
 #add-font {
   font-family: 'Cinzel Decorative', cursive;
 }
