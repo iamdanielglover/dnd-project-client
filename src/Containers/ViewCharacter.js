@@ -5,7 +5,7 @@ import SkillList from '../Components/CharacterSheetStuff/SkillList.js'
 import EquippedWeapon from '../Components/CharacterInventory/EquippedWeapon.js'
 import EquippedArmor from '../Components/CharacterInventory/EquippedArmor.js'
 import './StyleSheet.css'
-import { Grid, Button, Table } from 'semantic-ui-react'
+import { Grid, Button, Table, Segment, Image, Dimmer, Loader } from 'semantic-ui-react'
 
 class ViewCharacter extends React.Component {
   state = {
@@ -45,10 +45,12 @@ class ViewCharacter extends React.Component {
           <Grid.Column>
 
             <AttributeList char={this.state.character} user={this.props.user}/>
-            <div style={{marginTop: "11%", textAlign: "center"}}>
-              <Button onClick={() => this.props.history.push("/armory/" + this.state.character)}>Armors</Button>
-              <Button onClick={this.handleClick}>Spellbook</Button>
-              <Button onClick={() => this.props.history.push("/arsenal/" + this.state.character)}>Weapons</Button>
+            <div style={{marginTop: "6%", marginBottom: "4%", textAlign: "center"}}>
+              <Segment style={{width: "50%", left: "25%"}} id="card-border">
+                <Image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyTp8Y6SSyfkRU2XoYgLjt-YYquuEw89TsmdI2x_CiNEOKnQpMhg" size="tiny" circular centered />
+                <br/>
+                <Button onClick={this.handleClick}>Spellbook</Button>
+              </Segment>
               </div>
 
           </Grid.Column>
@@ -56,6 +58,7 @@ class ViewCharacter extends React.Component {
 
               <SkillList char={this.state.character}/>
 
+              <Segment>
               <Table className={'main'} compact>
                 <Table.Header>
                   <Table.Row>
@@ -69,7 +72,10 @@ class ViewCharacter extends React.Component {
                   <EquippedWeapon char={this.state.character} />
                 </Table.Body>
               </Table>
+              <Button fluid={true} attached="top" onClick={() => this.props.history.push("/arsenal/" + this.state.character)}>Weapon Inventory</Button>
+              </Segment>
 
+              <Segment>
               <Table compact>
                 <Table.Header>
                   <Table.Row>
@@ -82,6 +88,8 @@ class ViewCharacter extends React.Component {
                   <EquippedArmor char={this.state.character} />
                 </Table.Body>
               </Table>
+              <Button fluid={true} attached="top" onClick={() => this.props.history.push("/armory/" + this.state.character)}>Armor Inventory</Button>
+              </Segment>
 
           </Grid.Column>
         </Grid.Row>
@@ -90,8 +98,19 @@ class ViewCharacter extends React.Component {
 
   render() {
       return (
-        <div style={{paddingLeft: 100, paddingRight: 100}}>
-          {this.renderCharacter()}
+        <div>
+          {
+            this.state.loading ?
+            <div>
+              <Dimmer active>
+                <Loader />
+              </Dimmer>
+            </div>
+            :
+            <React.Fragment>
+            {this.renderCharacter()}
+            </React.Fragment>
+          }
         </div>
       )
     }

@@ -47,6 +47,7 @@ class CharacterInfo extends React.Component {
   render() {
     return (
       <div>
+        <h1 id="character-name">{this.state.name}</h1>
         <Grid columns={3}>
           <Grid.Column>
             <Table definition compact>
@@ -54,12 +55,39 @@ class CharacterInfo extends React.Component {
 
                 <Table.Row>
                   <Table.Cell>
-                    Name
+                    Race
                   </Table.Cell>
                   <Table.Cell>
-                    {this.state.name}
+                    {this.state.race}
                   </Table.Cell>
                 </Table.Row>
+
+                <Table.Row>
+                  <Table.Cell>
+                    Class
+                  </Table.Cell>
+                  <Table.Cell>
+                    {this.state.klass}
+                  </Table.Cell>
+                </Table.Row>
+
+                <Table.Row>
+                  <Table.Cell>
+                    Experience
+                  </Table.Cell>
+                  <Table.Cell>
+                    {this.state.experience} <Button style={{float: "right"}} onClick={() => this.props.sendUpgrade(this.props.char)}>add XP</Button>
+                  </Table.Cell>
+                </Table.Row>
+
+
+              </Table.Body>
+
+            </Table>
+          </Grid.Column>
+          <Grid.Column>
+            <Table definition compact style={{marginTop: "6%"}}>
+              <Table.Body>
 
                 <Table.Row>
                   <Table.Cell>
@@ -89,39 +117,12 @@ class CharacterInfo extends React.Component {
 
                 <Table.Row>
                   <Table.Cell>
-                    Race
+                    Level
                   </Table.Cell>
                   <Table.Cell>
-                    {this.state.race}
+                    {this.state.level}
                   </Table.Cell>
                 </Table.Row>
-
-                <Table.Row>
-                  <Table.Cell>
-                    Class
-                  </Table.Cell>
-                  <Table.Cell>
-                    {this.state.klass}
-                  </Table.Cell>
-                </Table.Row>
-
-                <Table.Row>
-                  <Table.Cell>
-                    Experience
-                  </Table.Cell>
-                  <Table.Cell>
-                    {this.state.experience} <button style={{float: "right"}} onClick={() => this.props.sendUpgrade(this.props.char)}>add XP</button>
-                  </Table.Cell>
-                </Table.Row>
-
-
-              </Table.Body>
-
-            </Table>
-          </Grid.Column>
-          <Grid.Column>
-            <Table definition compact>
-              <Table.Body>
 
                 <Table.Row>
                   <Table.Cell>
@@ -137,16 +138,13 @@ class CharacterInfo extends React.Component {
                     Current HP
                   </Table.Cell>
                   <Table.Cell>
-                    {this.state.current_hp}<Button compact style={{float:"right"}} onClick={() => this.setState({current_hp: this.state.current_hp - 1})}>-</Button><Button compact style={{float:"right"}} onClick={() => this.setState({current_hp: this.state.current_hp + 1})}>+</Button>
-                  </Table.Cell>
-                </Table.Row>
 
-                <Table.Row>
-                  <Table.Cell>
-                    Level
-                  </Table.Cell>
-                  <Table.Cell>
-                    {this.state.level}
+                    {this.state.current_hp}
+                    <Button.Group floated={"right"} size='large'>
+                      <Button compact style={{fontSize: "14px"}} onClick={() => this.setState({current_hp: this.state.current_hp - 1})}>Damage</Button>
+                      <Button.Or />
+                      <Button compact style={{fontSize: "14px"}} onClick={() => this.setState({current_hp: this.state.current_hp + 1})}>Heal</Button>
+                    </Button.Group>
                   </Table.Cell>
                 </Table.Row>
 
@@ -162,3 +160,12 @@ class CharacterInfo extends React.Component {
 }
 
 export default CharacterInfo
+
+// <Table.Row>
+//   <Table.Cell>
+//     Name
+//   </Table.Cell>
+//   <Table.Cell>
+//     {this.state.name}
+//   </Table.Cell>
+// </Table.Row>

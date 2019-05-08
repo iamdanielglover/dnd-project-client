@@ -1,5 +1,5 @@
 import React from "react"
-import { Table } from 'semantic-ui-react'
+import { Table, Button } from 'semantic-ui-react'
 
 class EquippedArmor extends React.Component {
   state = {

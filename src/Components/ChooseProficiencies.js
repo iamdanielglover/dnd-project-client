@@ -89,7 +89,12 @@ class ChooseProficiency extends React.Component {
           <form onSubmit={this.handleSubmit}>
             {this.renderFormAfterLoad()}
             <br/>
-            <Button floated={"right"} >Submit</Button>
+            {
+              this.state.chosen_profs.length > this.state.choose ?
+              <p floated={'right'}>You've selected too many. Unselect options to re-render the submit button.</p>
+              :
+              <Button floated={"right"} >Submit</Button>
+            }
           </form>
         </React.Fragment>
       )

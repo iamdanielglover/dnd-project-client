@@ -94,9 +94,8 @@ class GetAlignment extends React.Component {
                 </Card>
               </Grid.Column>
               <Grid.Column>
-                <h1>Understanding Alignment</h1>
+                <h1>Understanding Alignment - {this.state.alignment}</h1>
                   {this.description()}
-                  <small>{this.state.alignment}</small>
               </Grid.Column>
             </Grid.Row>
           </Grid>

@@ -97,7 +97,7 @@ class GetRace extends React.Component {
               </Card>
             </Grid.Column>
             <Grid.Column>
-              <h1>Race Description - {this.state.chosen_race}</h1>
+              <h1>Description of {this.state.chosen_race}</h1>
                 {this.description()}
             </Grid.Column>
           </Grid.Row>

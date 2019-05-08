@@ -28,6 +28,12 @@
   font-family: 'Cinzel Decorative', cursive;
 }
 
+#character-name {
+  font-family: 'Cinzel Decorative', cursive;
+  text-align: center;
+  font-size: 8vh;
+}
+
 /* style={{height: "600px",
  width: "600px",
   backgroundImage: "url('https://images.unsplash.com/photo-1551127481-43279ba6dec4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80')",

@@ -4,7 +4,6 @@ import './Landing.css'
 
 class Landing extends React.Component {
 
-
   render() {
     return (
       <div>

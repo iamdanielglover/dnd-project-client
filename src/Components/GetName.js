@@ -29,7 +29,13 @@ class GetName extends React.Component {
                   <Form onSubmit={this.handleSubmit}>
                       <input type="text" placeholder="Enter Name" name="input" value={this.state.input} onChange={this.handleChange} />
                       <br/>
-                      <Button style={{marginTop: "8%"}} fluid={true} type="submit">Submit</Button>
+                      {
+                        this.state.input.length > 1 ?
+                          <Button style={{marginTop: "8%"}} fluid={true} type="submit">Submit</Button>
+                          :
+                          null
+                      }
+
                   </Form>
                 </Form.Field>
             </Card.Content>

@@ -34,7 +34,7 @@ class WeaponList extends React.Component {
       <Table.Cell><Button onClick={() => this.handleClick(arm)}>
       {
         this.state.character.current_armor_id === arm.id ?
-        "Equipped"
+        "Unequip"
         :
         "Equip"
       }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Button } from 'semantic-ui-react'
+import { Card, Button, Image, Segment } from 'semantic-ui-react'
 import './StyleSheet.css'
 
 class ViewChars extends React.Component {
@@ -73,14 +73,22 @@ class ViewChars extends React.Component {
 render() {
     return (
       <div>
-        <h1 style={{textAlign: "center"}}>Your Characters</h1>
         {
-          this.state.characters ?
-        <Card.Group centered itemsPerRow={4}>
-          {this.displayListOfNames()}
-        </Card.Group>
+          this.state.characters[0] ?
+          <React.Fragment>
+          <h1 style={{textAlign: "center"}}>Your Characters</h1>
+          <Card.Group centered itemsPerRow={4}>
+            {this.displayListOfNames()}
+          </Card.Group>
+        </React.Fragment>
         :
-        <h3>Empty</h3>
+        <React.Fragment>
+        <Segment textAlign="center">
+          <h1>No Available Characters</h1>
+          <Button style={{float: "center"}} onClick={() => this.props.history.push("/create-character")}>Create Character</Button>
+        </Segment>
+        <Image src='https://video-images.vice.com/articles/5bcde30c17a7010006070e21/lede/1540307507309-DandD-Cover-Crop.jpeg' size="big" centered circular />
+        </React.Fragment>
         }
       </div>
     )
