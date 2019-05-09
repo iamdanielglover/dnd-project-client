@@ -60,7 +60,7 @@ class WeaponList extends React.Component {
       <Table.Cell>{this.assignAbilityScore(this.state.character.dexterity)}</Table.Cell>
       <Table.Cell>{this.assignAbilityScore(this.state.character.strength)}</Table.Cell>
       <Table.Cell>{wep.damage}</Table.Cell>
-      <Table.Cell><Button onClick={() => this.handleClick(wep)}>Add</Button></Table.Cell>
+      <Table.Cell><Button id="add-font" color="black" onClick={() => this.handleClick(wep)}>Add</Button></Table.Cell>
       </Table.Row>
     )
   }
@@ -92,7 +92,7 @@ class WeaponList extends React.Component {
     console.log(this.state)
     return (
       <React.Fragment>
-        <Button onClick={() => this.props.history.goBack()}>Go Back</Button>
+        <Button id="add-font" color="black" onClick={() => this.props.history.goBack()}>Go Back</Button>
       <Form>
         <Form.Field>
           <input onChange={this.handleChange} name="searchTerm" value={this.state.searchTerm} placeholder='Search' />

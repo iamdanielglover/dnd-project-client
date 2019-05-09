@@ -43,7 +43,7 @@ class ViewChars extends React.Component {
     if (!this.state.loading) {
       return this.state.characters.map((character, index) =>   <Card id="card-border"  key={index}>
           <Card.Content>
-            <Card.Header>{character.name}</Card.Header>
+            <Card.Header id="add-font">{character.name}</Card.Header>
             <Card.Meta>
               <span>Joined in {character.created_at.slice(0,10)}</span>
             </Card.Meta>
@@ -51,8 +51,11 @@ class ViewChars extends React.Component {
             <Card.Description>Race: {this.findCharacterRace(character)}</Card.Description>
             <Card.Description>Class: {this.findCharacterClass(character)}</Card.Description>
           </Card.Content>
-              <Button compact onClick={() => this.handleClick(character)}>View</Button>
-              <Button negative={true} compact onClick={() => this.handleDeleteClick(character)}>Delete</Button>
+          <Button.Group>
+              <Button id="add-font" color="black" compact onClick={() => this.handleClick(character)}>View</Button>
+              <Button.Or id="add-font"/>
+              <Button id="add-font" color="red" compact onClick={() => this.handleDeleteClick(character)}>Delete</Button>
+          </Button.Group>
         </Card>
       )
     }
@@ -76,16 +79,16 @@ render() {
         {
           this.state.characters[0] ?
           <React.Fragment>
-          <h1 style={{textAlign: "center"}}>Your Characters</h1>
-          <Card.Group centered itemsPerRow={4}>
+          <h1 id="add-font" style={{textAlign: "center", fontSize: "7vh"}}>Your Characters</h1>
+          <Card.Group style={{marginTop: "1%"}} centered itemsPerRow={4}>
             {this.displayListOfNames()}
           </Card.Group>
         </React.Fragment>
         :
         <React.Fragment>
         <Segment textAlign="center">
-          <h1>No Available Characters</h1>
-          <Button style={{float: "center"}} onClick={() => this.props.history.push("/create-character")}>Create Character</Button>
+          <h1 id="add-font">No Available Characters</h1>
+          <Button id="add-font" color="black" style={{float: "center"}} onClick={() => this.props.history.push("/create-character")}>Create Character</Button>
         </Segment>
         <Image src='https://video-images.vice.com/articles/5bcde30c17a7010006070e21/lede/1540307507309-DandD-Cover-Crop.jpeg' size="big" centered circular />
         </React.Fragment>

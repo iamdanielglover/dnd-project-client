@@ -76,7 +76,7 @@ class CharacterInfo extends React.Component {
                     Experience
                   </Table.Cell>
                   <Table.Cell>
-                    {this.state.experience} <Button style={{float: "right"}} onClick={() => this.props.sendUpgrade(this.props.char)}>add XP</Button>
+                    {this.state.experience} <Button id="add-font" color="black" style={{float: "right"}} onClick={() => this.props.sendUpgrade(this.props.char)}>add XP</Button>
                   </Table.Cell>
                 </Table.Row>
 
@@ -141,9 +141,9 @@ class CharacterInfo extends React.Component {
 
                     {this.state.current_hp}
                     <Button.Group floated={"right"} size='large'>
-                      <Button compact style={{fontSize: "14px"}} onClick={() => this.setState({current_hp: this.state.current_hp - 1})}>Damage</Button>
+                      <Button id="add-font" color="black" compact style={{fontSize: "14px"}} onClick={() => this.setState({current_hp: this.state.current_hp - 1})}>Damage</Button>
                       <Button.Or />
-                      <Button compact style={{fontSize: "14px"}} onClick={() => this.setState({current_hp: this.state.current_hp + 1})}>Heal</Button>
+                      <Button id="add-font" color="black" compact style={{fontSize: "14px"}} onClick={() => this.setState({current_hp: this.state.current_hp + 1})}>Heal</Button>
                     </Button.Group>
                   </Table.Cell>
                 </Table.Row>

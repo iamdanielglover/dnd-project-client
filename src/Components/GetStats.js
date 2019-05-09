@@ -138,7 +138,7 @@ class GetStats extends React.Component {
 
             </Table.Body>
           </Table>
-          <Button>Submit</Button>
+          <Button id="add-font" color="black">Submit</Button>
         </form><br/>
       <em>Spend {75 - this.setTotal()} points</em>
       </div>

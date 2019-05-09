@@ -1,4 +1,5 @@
 import React from 'react'
+import { Form, Card, Button } from "semantic-ui-react"
 
 class UpgradeChar extends React.Component {
   state = {
@@ -74,16 +75,20 @@ class UpgradeChar extends React.Component {
   renderCharacterInfo() {
     if (!this.state.loading)
     return (
-      <React.Fragment>
-        <h1>{this.state.name}</h1>
-        <form onSubmit={this.handleSubmit} >
-        <label>
-        <h4>Experience</h4>
-          <input type="number" name="add_to_experience" value={this.state.character.add_to_experience} onChange={this.handleChange} />
-        </label>
-          <button type="submit">Submit</button>
-        </form>
-      </React.Fragment>
+      <div style={{paddingTop: "15%"}}>
+        <Card id='card-border' centered>
+          <Card.Content textAlign={"center"}>
+            <Card.Header id='add-font'>Experience - {this.state.character.name}</Card.Header>
+              <Form.Field style={{marginTop: "8%"}}>
+                <Form onSubmit={this.handleSubmit}>
+                  <input type="number" name="add_to_experience" defaultValue={this.state.character.add_to_experience} onChange={this.handleChange} />
+                    <br/>
+                        <Button id="add-font" color="black" style={{marginTop: "8%"}} fluid={true} type="submit">Submit</Button>
+                </Form>
+              </Form.Field>
+          </Card.Content>
+        </Card>
+      </div>
     )
   }
 
@@ -130,9 +135,10 @@ class UpgradeChar extends React.Component {
 
 
   render() {
+    console.log(this.state)
     return (
       <React.Fragment>
-        {this.renderCharacterInfo()}
+          {this.renderCharacterInfo()}
       </React.Fragment>
     )
   }

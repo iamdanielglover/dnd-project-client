@@ -31,7 +31,7 @@ class GetName extends React.Component {
                       <br/>
                       {
                         this.state.input.length > 1 ?
-                          <Button style={{marginTop: "8%"}} fluid={true} type="submit">Submit</Button>
+                          <Button id="add-font" color="black" style={{marginTop: "8%"}} fluid={true} type="submit">Submit</Button>
                           :
                           null
                       }

@@ -49,7 +49,7 @@ class ViewCharacter extends React.Component {
               <Segment style={{width: "50%", left: "25%"}} id="card-border">
                 <Image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyTp8Y6SSyfkRU2XoYgLjt-YYquuEw89TsmdI2x_CiNEOKnQpMhg" size="tiny" circular centered />
                 <br/>
-                <Button onClick={this.handleClick}>Spellbook</Button>
+                <Button id="add-font" color="black" onClick={this.handleClick}>Spellbook</Button>
               </Segment>
               </div>
 
@@ -72,7 +72,7 @@ class ViewCharacter extends React.Component {
                   <EquippedWeapon char={this.state.character} />
                 </Table.Body>
               </Table>
-              <Button fluid={true} attached="top" onClick={() => this.props.history.push("/arsenal/" + this.state.character)}>Weapon Inventory</Button>
+              <Button id="add-font" color="black" fluid={true} attached="top" onClick={() => this.props.history.push("/arsenal/" + this.state.character)}>Weapon Inventory</Button>
               </Segment>
 
               <Segment>
@@ -88,7 +88,7 @@ class ViewCharacter extends React.Component {
                   <EquippedArmor char={this.state.character} />
                 </Table.Body>
               </Table>
-              <Button fluid={true} attached="top" onClick={() => this.props.history.push("/armory/" + this.state.character)}>Armor Inventory</Button>
+              <Button id="add-font" color="black" fluid={true} attached="top" onClick={() => this.props.history.push("/armory/" + this.state.character)}>Armor Inventory</Button>
               </Segment>
 
           </Grid.Column>

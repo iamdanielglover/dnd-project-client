@@ -31,7 +31,7 @@ class WeaponList extends React.Component {
       <Table.Row key={index}>
       <Table.Cell>{arm.name}</Table.Cell>
       <Table.Cell>{arm.armor_class}</Table.Cell>
-      <Table.Cell><Button onClick={() => this.handleClick(arm)}>
+      <Table.Cell><Button id="add-font" color="black" onClick={() => this.handleClick(arm)}>
       {
         this.state.character.current_armor_id === arm.id ?
         "Unequip"
@@ -71,7 +71,7 @@ class WeaponList extends React.Component {
     console.log(this.state)
     return (
       <React.Fragment>
-        <Button onClick={() => this.props.history.goBack()}>Go Back</Button>
+        <Button id="add-font" color="black" onClick={() => this.props.history.goBack()}>Go Back</Button>
       <Form>
         <Form.Field>
           <input onChange={this.handleChange} name="searchTerm" value={this.state.searchTerm} placeholder='Search' />

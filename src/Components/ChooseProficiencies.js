@@ -72,9 +72,9 @@ class ChooseProficiency extends React.Component {
       return this.state.from.map((prof, index) => {
         return (
           <div key={index}>
-            <label>
+            <label id="add-font">
               <input type="checkbox" value={false} onChange={(event) => this.addProficiency(event, prof)} />
-                {prof.name.slice(7)}
+               {prof.name.slice(7)}
             </label>
             <br/>
           </div>
@@ -90,10 +90,10 @@ class ChooseProficiency extends React.Component {
             {this.renderFormAfterLoad()}
             <br/>
             {
-              this.state.chosen_profs.length > this.state.choose ?
-              <p floated={'right'}>You've selected too many. Unselect options to re-render the submit button.</p>
+              (this.state.chosen_profs.length > this.state.choose || this.state.chosen_profs.length < 1) ?
+              <p id="add-font" floated={'right'}>Select at least {this.state.choose} proficiencies to continue.</p>
               :
-              <Button floated={"right"} >Submit</Button>
+              <Button id="add-font" color="black" floated={"right"} >Submit</Button>
             }
           </form>
         </React.Fragment>

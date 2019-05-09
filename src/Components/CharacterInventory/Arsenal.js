@@ -19,7 +19,7 @@ class Spellbook extends React.Component {
     return this.state.weapons.map((weapon, index) =>
       <Table.Row key={index}>
         <Table.Cell>{weapon.name}</Table.Cell>
-        <Table.Cell><Button onClick={() => this.handleEquipClick(weapon)}>
+        <Table.Cell><Button id="add-font" color="black" onClick={() => this.handleEquipClick(weapon)}>
           {
               this.state.character.current_weapon_id === weapon.id ?
               "Unequip"
@@ -27,7 +27,7 @@ class Spellbook extends React.Component {
               "Equip"
           }
         </Button></Table.Cell>
-        <Table.Cell><Button onClick={() => this.handleDropClick(weapon)}>Drop</Button></Table.Cell>
+        <Table.Cell><Button id="add-font" color="black" onClick={() => this.handleDropClick(weapon)}>Drop</Button></Table.Cell>
       </Table.Row>)
   }
 
@@ -63,8 +63,8 @@ class Spellbook extends React.Component {
     return (
       <div>
         <h1>Weapon Inventory</h1>
-      <Button onClick={() => this.props.history.push('/view-charactersheet/' + this.state.character_id)}>Back to Character</Button>
-      <Button onClick={this.handleWeaponSearchClick}>Search Weapons</Button>
+      <Button id="add-font" color="black" onClick={() => this.props.history.push('/view-charactersheet/' + this.state.character_id)}>Back to Character</Button>
+      <Button id="add-font" color="black" onClick={this.handleWeaponSearchClick}>Search Weapons</Button>
       {
         this.state.weapons[0] ?
         <Table compact>

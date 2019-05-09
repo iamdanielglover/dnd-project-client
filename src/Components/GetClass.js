@@ -100,7 +100,7 @@ class GetClass extends React.Component {
                           <select value={this.state.chosen_klass} onChange={this.handleChange}>
                             {this.renderKlasses()}
                           </select>
-                            <Button style={{marginTop: "8%"}} fluid={true} type="submit">Submit</Button>
+                            <Button id="add-font" color="black" style={{marginTop: "8%"}} fluid={true} type="submit">Submit</Button>
                         </Form>
                       </Form.Field>
                   </Card.Content>

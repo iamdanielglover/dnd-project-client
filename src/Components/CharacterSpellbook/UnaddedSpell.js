@@ -40,7 +40,7 @@ class UnaddedSpell extends React.Component {
   render() {
     return (
       <React.Fragment>
-          <Button onClick={() => this.props.history.goBack()}>Back</Button>
+          <Button id="add-font" color="black" onClick={() => this.props.history.goBack()}>Back</Button>
         <h1>{this.state.spell.name}</h1>
         <p>{this.state.spell.description}</p>
       </React.Fragment>

@@ -59,8 +59,8 @@ class SpellSearcher extends React.Component {
       <Table.Row key={index}>
         <Table.Cell>{spell.url.slice(34)}</Table.Cell>
         <Table.Cell>{spell.name}</Table.Cell>
-        <Table.Cell><Button onClick={() => this.handleClick(spell)}>Add</Button></Table.Cell>
-        <Table.Cell><Button onClick={() => this.handleDetailsClick(spell)}>View</Button></Table.Cell>
+        <Table.Cell><Button id="add-font" color="black" onClick={() => this.handleClick(spell)}>Add</Button></Table.Cell>
+        <Table.Cell><Button id="add-font" color="black" onClick={() => this.handleDetailsClick(spell)}>View</Button></Table.Cell>
       </Table.Row>)
   }
 
@@ -78,8 +78,8 @@ class SpellSearcher extends React.Component {
         :
         <React.Fragment>
         <h3>Search For Spells</h3>
-        <Button onClick={this.backToSpellbook}>Back to Spellbook</Button>
-        <Button onClick={() => this.props.history.push('/view-charactersheet/' + this.state.character_id)}>Back to Character</Button>
+        <Button id="add-font" color="black" onClick={this.backToSpellbook}>Back to Spellbook</Button>
+        <Button id="add-font" color="black" onClick={() => this.props.history.push('/view-charactersheet/' + this.state.character_id)}>Back to Character</Button>
           <Form>
             <Form.Field>
               <input onChange={this.handleChange} name="searchTerm" value={this.state.searchTerm} placeholder='Search' />

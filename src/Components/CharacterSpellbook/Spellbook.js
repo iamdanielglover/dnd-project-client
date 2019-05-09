@@ -1,23 +1,24 @@
 import React from 'react'
-import { Button, Table, Segment, Image } from "semantic-ui-react"
+import { Button, Table, Segment, Image, Dimmer, Loader } from "semantic-ui-react"
 
 class Spellbook extends React.Component {
   state = {
     character_id: this.props.match.params.character_id,
     spells: [],
+    loading: true
   }
 
   componentDidMount() {
     fetch('http://localhost:3000/api/v1/characters/' + this.props.match.params.character_id)
       .then(resp => resp.json())
-      .then(data => this.setState({ spells: data.spells }))
+      .then(data => this.setState({ spells: data.spells, loading: false }))
   }
 
   showCharactersSpells = () => {
     return this.state.spells.map((spell, index) => <Table.Row key={index}>
     <Table.Cell>{spell.name}</Table.Cell>
-    <Table.Cell><Button onClick={() => this.handleClick(spell)}>Details</Button></Table.Cell>
-    <Table.Cell><Button onClick={() => this.handleRemoveClick(spell)}>Remove</Button></Table.Cell>
+    <Table.Cell><Button id="add-font" color="black" onClick={() => this.handleClick(spell)}>Details</Button></Table.Cell>
+    <Table.Cell><Button id="add-font" color="black" onClick={() => this.handleRemoveClick(spell)}>Remove</Button></Table.Cell>
   </Table.Row>)
   }
 
@@ -51,39 +52,60 @@ class Spellbook extends React.Component {
         }))
       }
 
+    onceLoaded() {
+
+      return (
+        <div>
+        <Button id="add-font" color="black" onClick={() => this.props.history.push('/view-charactersheet/' + this.state.character_id)}>Back to Character</Button>
+        <Button id="add-font" color="black" onClick={this.handleSpellSearchClick}>Search Spells</Button>
+            {
+              this.state.spells[0] ?
+                <Table compact>
+                  <Table.Header>
+                    <Table.Row>
+                      <Table.HeaderCell>
+                        Name
+                      </Table.HeaderCell>
+                      <Table.HeaderCell>
+                        View Details
+                      </Table.HeaderCell>
+                      <Table.HeaderCell>
+                        Remove
+                      </Table.HeaderCell>
+                    </Table.Row>
+                  </Table.Header>
+                  <Table.Body>
+                    {this.showCharactersSpells()}
+                  </Table.Body>
+                </Table>
+                :
+                <React.Fragment>
+                  <Segment textAlign="center">
+                    <h1>You currently have no spells listed.</h1>
+                  </Segment>
+                  <Image src='https://video-images.vice.com/articles/5bcde30c17a7010006070e21/lede/1540307507309-DandD-Cover-Crop.jpeg' size="big" centered circular />
+                </React.Fragment>
+            }
+        </div>
+      )
+    }
+
   render() {
     console.log(this.state)
     return (
       <div>
-      <Button onClick={() => this.props.history.push('/view-charactersheet/' + this.state.character_id)}>Back to Character</Button>
-      <Button onClick={this.handleSpellSearchClick}>Search Spells</Button>
-      {this.state.spells[0] ?
-        <Table compact>
-      <Table.Header>
-          <Table.Row>
-            <Table.HeaderCell>
-              Name
-            </Table.HeaderCell>
-            <Table.HeaderCell>
-              View Details
-            </Table.HeaderCell>
-            <Table.HeaderCell>
-              Remove
-            </Table.HeaderCell>
-          </Table.Row>
-        </Table.Header>
-        <Table.Body>
-          {this.showCharactersSpells()}
-        </Table.Body>
-      </Table>
-      :
-      <React.Fragment>
-      <Segment textAlign="center">
-        <h1>You currently have no spells listed.</h1>
-      </Segment>
-      <Image src='https://video-images.vice.com/articles/5bcde30c17a7010006070e21/lede/1540307507309-DandD-Cover-Crop.jpeg' size="big" centered circular />
-      </React.Fragment>
-    }
+        {
+          this.state.loading ?
+          <div>
+            <Dimmer active>
+              <Loader />
+            </Dimmer>
+          </div>
+          :
+          <React.Fragment>
+          {this.onceLoaded()}
+          </React.Fragment>
+        }
       </div>
     )
   }
