@@ -14,10 +14,16 @@ class EquippedArmor extends React.Component {
       .then(data => this.setState({
          character: data
        }, () => {
+         if (this.state.character.current_armor_id !== null) {
          fetch('http://localhost:3000/api/v1/armors/' + this.state.character.current_armor_id)
           .then(resp => resp.json())
           .then(data => this.setState({ equipped_armor: data, loading: false }))
-       }))
+        } else {
+            this.setState({ loading: false })
+        }
+       }
+     )
+   )
   }
 
   assignAbilityScore = (number) => {
@@ -52,8 +58,22 @@ class EquippedArmor extends React.Component {
       <React.Fragment>
       {!this.state.loading ?
         <Table.Row>
-          <Table.Cell>{this.state.equipped_armor.name}</Table.Cell>
-          <Table.Cell>{this.state.equipped_armor.armor_class + this.assignAbilityScore(this.state.character.dexterity)}</Table.Cell>
+          <Table.Cell>
+            {
+              this.state.equipped_armor === null  ?
+              "-"
+              :
+              this.state.equipped_armor.name
+            }
+          </Table.Cell>
+          <Table.Cell>
+            {
+              this.state.equipped_armor === null  ?
+              "-"
+              :
+              this.state.equipped_armor.armor_class + this.assignAbilityScore(this.state.character.dexterity)
+            }
+            </Table.Cell>
           <Table.Cell>{this.state.character.armor_class}</Table.Cell>
         </Table.Row>
         :

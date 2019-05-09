@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Button } from 'semantic-ui-react'
+import { Form, Button, Card } from 'semantic-ui-react'
 
 class LoginForm extends React.Component {
 	state = {
@@ -38,19 +38,23 @@ class LoginForm extends React.Component {
 
 	render(){
 		return (
-      <div>
-      <h1>Please Login</h1>
-  			<Form onSubmit={this.handleSubmit}>
-  		    <Form.Field>
-  		      <label>Username</label>
-  		      <input onChange={this.handleChange} name="username" value={this.state.username} placeholder='Username' />
-  		    </Form.Field>
-  		    <Form.Field>
-  		      <label>Password</label>
-  		      <input onChange={this.handleChange} type="password" name="password" value={this.state.password} placeholder='Password' />
-  		    </Form.Field>
-  		    <Button type='submit'>Submit</Button>
-  		  </Form>
+      <div style={{marginTop: "10%"}}>
+			<Card centered >
+				<Card.Content>
+					<Card.Header id="add-font" textAlign="center">Please Login</Card.Header>
+					<Form style={{marginTop: "5%"}} onSubmit={this.handleSubmit}>
+	  		    <Form.Field>
+	  		      <label>Username</label>
+	  		      <input onChange={this.handleChange} name="username" value={this.state.username} placeholder='Username' />
+	  		    </Form.Field>
+	  		    <Form.Field>
+	  		      <label>Password</label>
+	  		      <input onChange={this.handleChange} type="password" name="password" value={this.state.password} placeholder='Password' />
+	  		    </Form.Field>
+	  		    <Button type='submit'>Submit</Button>
+	  		  </Form>
+				</Card.Content>
+			</Card>
       </div>
 		)
 	}

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Button } from 'semantic-ui-react'
+import { Form, Button, Card } from 'semantic-ui-react'
 
 class SignupForm extends React.Component {
 	state = {
@@ -43,23 +43,28 @@ class SignupForm extends React.Component {
 
 	render(){
 		return (
-      <div>
-      <h1>Welcome to the community</h1>
-  			<Form onSubmit={this.handleSubmit}>
-  		    <Form.Field>
-  		      <label>Username</label>
-  		      <input onChange={this.handleChange} name="username" value={this.state.username} placeholder='Username' />
-  		    </Form.Field>
-  		    <Form.Field>
-  		      <label>Password</label>
-  		      <input onChange={this.handleChange} type="password" name="password" value={this.state.password} placeholder='Password' />
-  		    </Form.Field>
-  		    <Form.Field>
-  		      <label>Password Confirmation</label>
-  		      <input onChange={this.handleChange} type="password" name="passwordConfirmation" value={this.state.passwordConfirmation} placeholder='Password Confirmation' />
-  		    </Form.Field>
-  		    <Button type='submit'>Submit</Button>
-  		  </Form>
+			<div style={{marginTop: "10%"}}>
+			<Card centered >
+				<Card.Content>	
+						<Card.Header id="add-font" textAlign="center">Welcome to the Community</Card.Header>
+							<Form onSubmit={this.handleSubmit}>
+			  		    <Form.Field>
+			  		      <label>Username</label>
+			  		      <input onChange={this.handleChange} name="username" value={this.state.username} placeholder='Username' />
+			  		    </Form.Field>
+			  		    <Form.Field>
+			  		      <label>Password</label>
+			  		      <input onChange={this.handleChange} type="password" name="password" value={this.state.password} placeholder='Password' />
+			  		    </Form.Field>
+			  		    <Form.Field>
+			  		      <label>Password Confirmation</label>
+			  		      <input onChange={this.handleChange} type="password" name="passwordConfirmation" value={this.state.passwordConfirmation} placeholder='Password Confirmation' />
+			  		    </Form.Field>
+			  		    <Button type='submit'>Submit</Button>
+			  		  </Form>
+					</Card.Content>
+				</Card>
+
       </div>
 		)
 	}

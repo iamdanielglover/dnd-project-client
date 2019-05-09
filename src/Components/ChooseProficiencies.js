@@ -91,7 +91,7 @@ class ChooseProficiency extends React.Component {
             <br/>
             {
               (this.state.chosen_profs.length > this.state.choose || this.state.chosen_profs.length < 1) ?
-              <p id="add-font" floated={'right'}>Select at least {this.state.choose} proficiencies to continue.</p>
+              <p id="add-font" floated={'right'}>Select between <strong>1</strong> & <strong>{this.state.choose}</strong> proficiencies to continue.</p>
               :
               <Button id="add-font" color="black" floated={"right"} >Submit</Button>
             }

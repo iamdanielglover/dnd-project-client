@@ -89,7 +89,7 @@ class SpellSearcher extends React.Component {
           <Table.Header>
               <Table.Row>
                 <Table.HeaderCell>
-                  Id
+                  Index
                 </Table.HeaderCell>
                 <Table.HeaderCell>
                   Name
